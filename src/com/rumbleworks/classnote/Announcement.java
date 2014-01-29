@@ -2,6 +2,12 @@ package com.rumbleworks.classnote;
 
 import java.util.Date;
 
+/**
+ * An Announcement is one of the T-Square, from-teacher notifications that are not actually assignments
+ * but should be visible within the list function, thus it implements DataItem so we know we can
+ * show it in our upcoming list
+ */
+
 public class Announcement {
 
 	public String name;
@@ -9,20 +15,13 @@ public class Announcement {
 	public Boolean isRead;
 	public Date dueDate;
 	public int courseNumber;
-
-	/** @param String name, String description, Boolean isRead, Date dueDate, int courseNumber
-	 * An Announcement is one of the T-Square, from-teacher notifications that are not actually assignments
-	 * but should be visible within the list function, thus it implements DataItem so we know we can
-	 * show it in our upcoming list
-	 *  @return void */ 
 	
-	public Announcement( String name, String description, Boolean isRead, Date dueDate, int courseNumber ) {
+	public Announcement(String name, String description, Boolean isRead, Date dueDate, int courseNumber) {
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
 		this.dueDate = dueDate;
 		this.courseNumber = courseNumber;
-	
 	}
 	
 	public String getName() {

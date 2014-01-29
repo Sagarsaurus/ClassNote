@@ -15,7 +15,7 @@ public class GradedWork {
 	public double overallScore;
 	public double percentageOfFinal;
 	
-	public GradedWork( String name, String description, Boolean isRead, Date dueDate, int courseNumber, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal ) {
+	public GradedWork(String name, String description, Boolean isRead, Date dueDate, int courseNumber, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
