@@ -1,7 +1,5 @@
 package com.rumbleworks.classnote;
 
-import java.util.Locale;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -13,12 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 //import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 //import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 //import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -118,16 +113,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	Bundle args = new Bundle();
             
             if ( position == 0 ) {
-            	fragment = new ListSectionFragment();
-	            args.putInt(ListSectionFragment.ARG_SECTION_NUMBER, position + 1);
+            	fragment = new AssignmentListFragment();
+	            args.putInt(AssignmentListFragment.ARG_SECTION_NUMBER, position + 1);
             }
             if ( position == 1 ) {
-            	fragment = new CalendarSectionFragment();
-	            args.putInt(CalendarSectionFragment.ARG_SECTION_NUMBER, position + 1);
+            	fragment = new AssignmentCalendarFragment();
+	            args.putInt(AssignmentCalendarFragment.ARG_SECTION_NUMBER, position + 1);
             }
             if ( position == 2 ) {
-            	fragment = new AnnouncementSectionFragment();
-	            args.putInt(AnnouncementSectionFragment.ARG_SECTION_NUMBER, position + 1);
+            	fragment = new AnnouncementListFragment();
+	            args.putInt(AnnouncementListFragment.ARG_SECTION_NUMBER, position + 1);
             }
             fragment.setArguments(args);
             return fragment;
@@ -146,96 +141,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 case 0:
                     return "Upcoming Assignments";
                 case 1:
-                    return "Calender";
+                    return "Calendar";
                 case 2:
                     return "Announcements";
             }
             return null;
         }
     }
-
-    
-    public static class ListSectionFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        public ListSectionFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_list, container, false);
-            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-    
-    
-    /**
-     * A dummy fragment representing a section of the app, but that simply
-     * displays dummy text.
-     */
-    
-    
-    public static class CalendarSectionFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        public CalendarSectionFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-    
-    public static class AnnouncementSectionFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        public AnnouncementSectionFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_announcement, container, false);
-            //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-    
-
     
     @Override
     public void onBackPressed() {
         //start activity here
     	Intent intent = new Intent();
-		
-		//arrayList.add(0, currentDishID);
-		//intent.putCharSequenceArrayListExtra("arrayList", arrayList);
-		
-		//intent.putExtra( "currentRestaurantID", currentRestaurantID );
-		//intent.putExtra( "currentFoodmenuID", currentFoodmenuID );
-		//intent.putExtra( "currentDishID", currentDishID );
-		
+
 		intent.setClass(MainActivity.this, UpdateActivity.class);
 
 		startActivity(intent);
