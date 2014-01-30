@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 //import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 //import android.view.MenuItem;
 
 
@@ -77,6 +78,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add_assignment) {
+            Intent intent = new Intent(this, AddActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
     
     @Override

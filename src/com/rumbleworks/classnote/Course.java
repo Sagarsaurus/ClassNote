@@ -27,6 +27,10 @@ public class Course {
 		this.announcementList = new ArrayList<Announcement>();
 	}
 
+    public String getCourseId() {
+        return courseSchool+" "+courseNumber;
+    }
+
     public String getCourseName() {
         return courseName;
     }
