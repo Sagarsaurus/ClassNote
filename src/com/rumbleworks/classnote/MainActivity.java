@@ -82,7 +82,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add_assignment) {
-            Intent intent = new Intent(this, AddActivity.class);
+            Intent intent = new Intent(this, AddAssignmentActivity.class);
             startActivity(intent);
             return true;
         }

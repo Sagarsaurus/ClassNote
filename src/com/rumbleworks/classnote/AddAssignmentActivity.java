@@ -12,12 +12,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import java.sql.Time;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class AddActivity extends Activity {
+public class AddAssignmentActivity extends Activity {
 
     private Spinner courseSpinner;
     private EditText titleField, descField;
@@ -27,10 +25,10 @@ public class AddActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add);
+		setContentView(R.layout.activity_add_assignment);
 
         courseSpinner = (Spinner)findViewById(R.id.courseSpinner);
-        courseSpinner.setAdapter(new ArrayAdapter(AddActivity.this, android.R.layout.simple_spinner_item, Datamart.getInstance().getCourseIds()));
+        courseSpinner.setAdapter(new ArrayAdapter(AddAssignmentActivity.this, android.R.layout.simple_spinner_item, Datamart.getInstance().getCourseIds()));
 
         titleField = (EditText)findViewById(R.id.titleField);
         descField = (EditText)findViewById(R.id.descField);

@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rumbleworks.classnote.AddActivity"
+            android:name=".AddAssignmentActivity"
             android:label="@string/title_activity_add" >
         </activity>
     </application>
