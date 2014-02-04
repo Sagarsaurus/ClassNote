@@ -12,6 +12,7 @@ public class Assignment extends GradedWork {
 	public Assignment(String name, String description, Boolean isRead, Date dueDate, String courseId, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
 		super(name, description, isRead, dueDate, courseId, pointsEarned, pointsPossible, overallScore, percentageOfFinal);
         Course c = Datamart.getInstance().getCourseById(courseId);
+        if (c == null) throw new IllegalArgumentException("Invalid course ID");
         c.addAssignment(this);
 	}
 	

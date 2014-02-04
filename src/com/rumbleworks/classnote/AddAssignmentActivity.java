@@ -41,6 +41,7 @@ public class AddAssignmentActivity extends Activity {
             public void onClick(View view) {
                 Calendar date = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
                 Assignment assignment = new Assignment(titleField.getText().toString(), descField.getText().toString(), true, date.getTime(), (String)courseSpinner.getSelectedItem(), -1, -1, -1, -1);
+                AddAssignmentActivity.this.finish();
             }
         });
 	}

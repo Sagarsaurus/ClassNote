@@ -1,6 +1,8 @@
 package com.rumbleworks.classnote;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Datamart {
@@ -33,9 +35,29 @@ public class Datamart {
 
     public Course getCourseById(String courseId) {
         for (Course c : courseList) {
-            if (c.getCourseId() == courseId) return c;
+            if (c.getCourseId().equals(courseId)) return c;
         }
         return null;
+    }
+
+    public List<Assignment> getAllAssignments() {
+        List<Assignment> list = new LinkedList<Assignment>();
+        for (Course c : getCourseList()) {
+            list.addAll(c.getAssignmentList());
+        }
+        return list;
+    }
+
+    public List<Assignment> getUpcomingAssignments() {
+        List<Assignment> list = new LinkedList<Assignment>();
+        for (Course c : getCourseList()) {
+            for (Assignment a : c.getAssignmentList()) {
+                if (a.getDueDate().after(new Date())) {
+                    list.add(a);
+                }
+            }
+        }
+        return list;
     }
 
     public List<Course> getCourseList() {
