@@ -12,6 +12,8 @@ import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class AssignmentAdapter extends BaseAdapter {
@@ -26,6 +28,7 @@ public class AssignmentAdapter extends BaseAdapter {
     }
 
     public void setList(List<Assignment> list) {
+        Collections.sort(list);
         this.list = list;
     }
 
