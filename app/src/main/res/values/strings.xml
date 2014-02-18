@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClassNote</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_update">UpdateActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="update">Update from T-Square</string>
+    <string name="cache">View Cached Assignments</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="title_activity_add">Add</string>
+
+</resources>
