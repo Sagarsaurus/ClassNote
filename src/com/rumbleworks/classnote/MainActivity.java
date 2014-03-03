@@ -140,6 +140,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             	fragment = new AnnouncementListFragment();
 	            args.putInt(AnnouncementListFragment.ARG_SECTION_NUMBER, position + 1);
             }
+            if ( position == 3 ) {
+                fragment = new AnnouncementListFragment();
+                args.putInt(GradebookFragment.ARG_SECTION_NUMBER, position + 1);
+            }
             fragment.setArguments(args);
             return fragment;
         }
@@ -147,7 +151,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -160,6 +164,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     return "Calendar";
                 case 2:
                     return "Announcements";
+                case 3:
+                    return "Gradebook";
             }
             return null;
         }
