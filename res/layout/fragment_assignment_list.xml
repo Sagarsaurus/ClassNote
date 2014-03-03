@@ -15,5 +15,4 @@
         android:text="No Assignments"
         android:gravity="center"
         android:textSize="18sp"/>
-
 </LinearLayout>

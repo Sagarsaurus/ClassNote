@@ -1,9 +1,14 @@
 package com.rumbleworks.classnote;
 
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +16,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 //import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 //import android.view.Gravity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
 //import android.view.MenuItem;
 
 
@@ -32,6 +44,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    FrameLayout mFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +86,28 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
 
 
-        //Auto-opening the instruction activity without closing the update activity
-        //Intent intent = new Intent();
-        //intent.setClass(MainActivity.this, InstructionActivity.class);
-        //startActivity(intent);
+        /**
+         * This part implements the overlay using a dialog
+         */
+        Dialog overlayInfo = new Dialog(MainActivity.this);
+        // Making sure there's no title.
+        overlayInfo.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Making dialog content transparent.
+        overlayInfo.getWindow().setBackgroundDrawable(
+                new ColorDrawable(Color.TRANSPARENT));
+        // Removing window dim normally visible when dialog are shown.
+        overlayInfo.getWindow().clearFlags(
+                WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        // Setting position of content, relative to window.
+        WindowManager.LayoutParams params = overlayInfo.getWindow().getAttributes();
+        params.gravity = Gravity.TOP | Gravity.LEFT;
+        params.x = 100;
+        params.y = 20;
+        // If user taps anywhere on the screen, dialog will be cancelled.
+        overlayInfo.setCancelable(true);
+        // Setting the content using prepared XML layout file.
+        overlayInfo.setContentView(R.layout.overlay);
+        overlayInfo.show();
     }
 
     @Override
@@ -182,9 +213,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		finish();
     	
     	super.onBackPressed();
-        
-        
-
 
     }
 

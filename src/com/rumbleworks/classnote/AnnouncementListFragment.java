@@ -22,6 +22,8 @@ public class AnnouncementListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_announcement_list, container, false);
         //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+        //View topLevelLayout = rootfindViewById(R.id.top_layout);
+        //topLevelLayout.setVisibility(View.INVISIBLE);
         return rootView;
     }
 }
