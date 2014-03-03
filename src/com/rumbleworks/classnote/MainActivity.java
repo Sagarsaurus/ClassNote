@@ -74,9 +74,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 
         //Auto-opening the instruction activity without closing the update activity
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, InstructionActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent();
+        //intent.setClass(MainActivity.this, InstructionActivity.class);
+        //startActivity(intent);
     }
 
     @Override
