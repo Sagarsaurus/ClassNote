@@ -30,7 +30,7 @@ public class GradedWork {
 
 	public String getName() {
 		// TODO Auto-generated method stub
-		return name;
+        return name;
 	}
 
 

@@ -16,6 +16,12 @@ public class UpdateActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
+
+
+        //Auto-opening the instruction activity without closing the update activity
+        Intent intent = new Intent();
+        intent.setClass(UpdateActivity.this, InstructionActivity.class);
+        startActivity(intent);
     }
 
 	@Override
