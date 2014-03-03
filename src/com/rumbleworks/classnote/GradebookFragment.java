@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Oliver on 3/2/14.
- */
 public class GradebookFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
@@ -27,5 +24,4 @@ public class GradebookFragment extends Fragment {
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;
     }
-
 }

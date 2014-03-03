@@ -141,7 +141,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	            args.putInt(AnnouncementListFragment.ARG_SECTION_NUMBER, position + 1);
             }
             if ( position == 3 ) {
-                fragment = new AnnouncementListFragment();
+                fragment = new GradebookFragment();
                 args.putInt(GradebookFragment.ARG_SECTION_NUMBER, position + 1);
             }
             fragment.setArguments(args);
