@@ -18,10 +18,6 @@ public class UpdateActivity extends Activity {
 		setContentView(R.layout.activity_update);
 
 
-        //Auto-opening the instruction activity without closing the update activity
-        Intent intent = new Intent();
-        intent.setClass(UpdateActivity.this, InstructionActivity.class);
-        startActivity(intent);
     }
 
 	@Override
