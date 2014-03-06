@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 //import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 //import android.view.Gravity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,6 +51,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent oldIntent = getIntent();
+        String username = oldIntent.getExtras().getString("username");
+        Log.v("cat", "cat " + username);
+
+        //arrayList = oldIntent.getCharSequenceArrayListExtra("arrayList");
+
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -106,7 +114,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // If user taps anywhere on the screen, dialog will be cancelled.
         overlayInfo.setCancelable(true);
         // Setting the content using prepared XML layout file.
-        overlayInfo.setContentView(R.layout.overlay);
+
+        //overlayInfo.setContentView(R.layout.overlay);
+
         overlayInfo.show();
     }
 

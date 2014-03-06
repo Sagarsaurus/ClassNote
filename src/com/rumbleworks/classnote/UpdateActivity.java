@@ -30,12 +30,13 @@ public class UpdateActivity extends Activity {
 	public void login( View view ) {
         EditText usernameField = (EditText)findViewById(R.id.usernameField);
         EditText passwordField = (EditText)findViewById(R.id.passwordField);
-
+        final String username = usernameField.getText().toString();
 
         TSquareAPI.login(usernameField.getText().toString(), passwordField.getText().toString(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject object) {
                 Intent intent = new Intent();
+                intent.putExtra("username", username);
                 intent.setClass(UpdateActivity.this, MainActivity.class);
 
                 startActivity(intent);
@@ -53,6 +54,7 @@ public class UpdateActivity extends Activity {
                 });
             }
         });
+
 	}
 
 }

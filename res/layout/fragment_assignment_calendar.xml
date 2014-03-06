@@ -18,11 +18,11 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button1"
+        <CalendarView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="match_parent"
+            android:id="@+id/calendarView"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/section_label"
