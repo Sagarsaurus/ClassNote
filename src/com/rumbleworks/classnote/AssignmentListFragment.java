@@ -18,6 +18,7 @@ public class AssignmentListFragment extends ListFragment {
 
     }
 
+
     public void onResume() {
         super.onResume();
         AssignmentAdapter assignmentAdapter = (AssignmentAdapter)this.getListAdapter();
