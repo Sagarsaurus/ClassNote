@@ -17,6 +17,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,9 +72,16 @@ public class TSquareAPI {
 
     // eventually use this to see if the users session has expired
     public static void getSession(final JsonHttpResponseHandler handler) {
-        get("/session", handler);
+        get("/session.json", handler);
     }
 
+
+    /**
+     * Making get requests to TSquare given
+     * BASE_URL tsquare.gatech.edu/direct/
+     * @param resource appended to base URL
+     * @param handler Handler for the request
+     */
     public static void get(final String resource, final JsonHttpResponseHandler handler) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -84,7 +92,7 @@ public class TSquareAPI {
 
                     httpContext.setAttribute(ClientContext.COOKIE_STORE, TSquareAPI.cookieStore);
 
-                    HttpRequestBase request = new HttpGet(BASE_URL+resource+".json");
+                    HttpRequestBase request = new HttpGet(BASE_URL+resource);
                     HttpResponse response = httpClient.execute(request, httpContext);
                     String responseStr = EntityUtils.toString(response.getEntity());
                     if (response.getStatusLine().getStatusCode() >= 200 && response.getStatusLine().getStatusCode() < 300) {
@@ -110,14 +118,24 @@ public class TSquareAPI {
         //List to return the announcements in ArrayList form from the JSONObject
         List<String> annList = new ArrayList<String>();
 
-        //Get request to TSquare
-        get("/announcement/user", new JsonHttpResponseHandler() {
+        //Get request to TSquare d = number of days, n = number of items
+        get("/announcement/user.json?d=50&n=20", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject object) {
                 //Iterating through the JSONObject returned by the request
-                Iterator<String> iter = object.keys();
-                while (iter.hasNext()) {
-                    Log.d("Items", iter.next());
+                //Iterator<String> iter = object.keys();
+                try {
+                    JSONArray ann = object.getJSONArray("announcement_collection");
+                    int len = ann.length();
+
+                    //Need to trim the message to remove tags
+                    for (int i = 0; i < len; i++) {
+                        Log.d("First", ann.getJSONObject(i).getString("body"));
+                    }
+                }
+                catch (Exception e)
+                {
+
                 }
             }
             @Override
