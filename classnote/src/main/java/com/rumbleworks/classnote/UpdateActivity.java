@@ -3,6 +3,7 @@ package com.rumbleworks.classnote;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -16,8 +17,6 @@ public class UpdateActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
-
-
     }
 
 	@Override
@@ -38,7 +37,6 @@ public class UpdateActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra("username", username);
                 intent.setClass(UpdateActivity.this, CompassActivity.class);
-
                 startActivity(intent);
                 finish();
             }

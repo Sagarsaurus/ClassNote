@@ -2,6 +2,7 @@ package com.rumbleworks.classnote;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class AnnouncementListFragment extends Fragment {
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
+        TSquareAPI.getAnnouncments();
         return rootView;
     }
 }

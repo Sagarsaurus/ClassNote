@@ -1,5 +1,7 @@
 package com.rumbleworks.classnote;
 
+import android.util.Log;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -20,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TSquareAPI {
@@ -97,6 +100,32 @@ public class TSquareAPI {
             }
         });
         thread.start();
+    }
+
+    /**
+     * Returns a list of announcements for a given user
+     */
+    public static List getAnnouncments()
+    {
+        //List to return the announcements in ArrayList form from the JSONObject
+        List<String> annList = new ArrayList<String>();
+
+        //Get request to TSquare
+        get("/announcement/user", new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(JSONObject object) {
+                //Iterating through the JSONObject returned by the request
+                Iterator<String> iter = object.keys();
+                while (iter.hasNext()) {
+                    Log.d("Items", iter.next());
+                }
+            }
+            @Override
+            public void onFailure() {
+                Log.d("Fail", "No response");
+            }
+        });
+        return annList;
     }
 }
 
