@@ -25,7 +25,8 @@ public class AnnouncementListFragment extends Fragment {
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
-        TSquareAPI.getAnnouncments();
+        TSquareAPI.refreshAnnouncments();
+        Log.d("First: ", Integer.toString(Datamart.getInstance().getAnnouncements().size()));
         return rootView;
     }
 }

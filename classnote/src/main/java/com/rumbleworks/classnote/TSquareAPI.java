@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.text.Html;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 
 public class TSquareAPI {
@@ -113,7 +114,7 @@ public class TSquareAPI {
     /**
      * Returns a list of announcements for a given user
      */
-    public static List getAnnouncments()
+    public static void refreshAnnouncments()
     {
         //List to return the announcements in ArrayList form from the JSONObject
         List<String> annList = new ArrayList<String>();
@@ -130,7 +131,8 @@ public class TSquareAPI {
 
                     //Need to trim the message to remove tags
                     for (int i = 0; i < len; i++) {
-                        Log.d("First", ann.getJSONObject(i).getString("body"));
+                        //Log.d("Ann", stripHtml(ann.getJSONObject(i).getString("body")));
+                        Datamart.getInstance().addAnnouncement((stripHtml(ann.getJSONObject(i).getString("body"))));
                     }
                 }
                 catch (Exception e)
@@ -143,7 +145,15 @@ public class TSquareAPI {
                 Log.d("Fail", "No response");
             }
         });
-        return annList;
+    }
+
+    /**
+     * Stripping html tags from the message
+     * @param html
+     * @return
+     */
+    public static String stripHtml(String html) {
+        return Html.fromHtml(html).toString();
     }
 }
 

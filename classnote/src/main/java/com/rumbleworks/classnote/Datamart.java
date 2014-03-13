@@ -10,9 +10,13 @@ public class Datamart {
     static Datamart instance;
 
 	private ArrayList<Course> courseList;
+
+    //Temporary to hold the announcements
+    private ArrayList<String> announcements;
 	
 	public Datamart() {
 		courseList = new ArrayList<Course>();
+        announcements = new ArrayList<String>();
         courseList.add(new Course("Junior Design 2", "CS", 3802));
         courseList.add(new Course("Intro to Networking", "CS", 3251));
         courseList.add(new Course("Art History II", "COA", 2242));
@@ -66,5 +70,20 @@ public class Datamart {
 
     public void addCourse(Course c) {
         courseList.add(c);
+    }
+
+    /**
+     * Returns ArrayList if announcements
+     * @return
+     */
+    public List<String> getAnnouncements() {
+        return announcements;
+    }
+
+    /**
+     * Add announcement to the arraylist
+     */
+    public void addAnnouncement(String ann) {
+        announcements.add(ann);
     }
 }
