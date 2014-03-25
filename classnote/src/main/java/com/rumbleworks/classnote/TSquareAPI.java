@@ -3,6 +3,8 @@ package com.rumbleworks.classnote;
 import android.text.Html;
 import android.util.Log;
 
+import com.loopj.android.http.AsyncHttpClient;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -26,6 +28,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.Iterator;
 import java.util.List;
+
+import java.util.concurrent.Future;
+
 
 public class TSquareAPI {
     public static BasicCookieStore cookieStore = new BasicCookieStore();
@@ -116,6 +121,12 @@ public class TSquareAPI {
      */
     public static void refreshAnnouncments()
     {
+
+//        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+//        Future<String> f = asyncHttpClient.prepareGet("http://www.ning.com/").execute();
+//        Strgin r = f.get();
+
+
         //List to return the announcements in ArrayList form from the JSONObject
         List<String> annList = new ArrayList<String>();
 
