@@ -36,7 +36,6 @@ public class AnnouncementListFragment extends ListFragment {
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
-
         this.setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), this.getActivity()));
 
         return rootView;
@@ -49,7 +48,7 @@ public class AnnouncementListFragment extends ListFragment {
         client.setCookieStore(TSquareAPI.cookieStore);
 
         //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
-        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=20", new AsyncHttpResponseHandler() {
+        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=5", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(String response) {
