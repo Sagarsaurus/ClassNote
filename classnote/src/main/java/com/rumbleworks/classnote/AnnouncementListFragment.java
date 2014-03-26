@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +36,6 @@ public class AnnouncementListFragment extends ListFragment {
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
-
         this.setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), this.getActivity()));
 
         return rootView;
@@ -42,9 +43,12 @@ public class AnnouncementListFragment extends ListFragment {
 
     public void refreshAnnouncements() {
         AsyncHttpClient client = new AsyncHttpClient();
+        //HttpContext httpContext = Datamart.getInstance().getHttpContext();
+        //Log.d("Cookie Store", httpContext.toString());
+        client.setCookieStore(TSquareAPI.cookieStore);
 
         //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
-        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=20", new AsyncHttpResponseHandler() {
+        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=5", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(String response) {
