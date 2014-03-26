@@ -1,6 +1,7 @@
 package com.rumbleworks.classnote;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,11 @@ public class CompassActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Intent intent = new Intent();
+        intent.setClass(CompassActivity.this, OverlayActivity.class);
+        startActivity(intent);
+        //finish();
     }
 
     @Override

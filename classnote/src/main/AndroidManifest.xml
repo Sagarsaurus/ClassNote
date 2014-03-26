@@ -42,11 +42,16 @@
             android:name="com.rumbleworks.classnote.CompassActivity"
             android:label="@string/title_activity_compass" >
 
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name="com.rumbleworks.classnote.OverlayActivity"
+            android:label="@string/title_activity_overlay" >
         </activity>
     </application>
 
