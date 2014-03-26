@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,9 @@ public class TSquareAPI {
                     if (response.getStatusLine().getStatusCode() == 201) {
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("session_id", responseStr);
+
+                        //Setting the httpcontext
+                        Datamart.getInstance().setHttpContext(httpContext);
                         if (handler != null) {
                             handler.onSuccess(jsonObject);
                         }
@@ -172,6 +176,10 @@ public class TSquareAPI {
      */
     public String getBaseUrl() {
         return BASE_URL;
+    }
+
+    public BasicCookieStore getCookieStore() {
+        return cookieStore;
     }
 }
 

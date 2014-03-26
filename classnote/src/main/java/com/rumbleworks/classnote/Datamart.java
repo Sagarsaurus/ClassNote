@@ -1,5 +1,8 @@
 package com.rumbleworks.classnote;
 
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -13,6 +16,7 @@ public class Datamart {
 
     //Temporary to hold the announcements
     private ArrayList<String> announcements;
+    private HttpContext httpContext;
 	
 	public Datamart() {
 		courseList = new ArrayList<Course>();
@@ -20,6 +24,7 @@ public class Datamart {
         courseList.add(new Course("Junior Design 2", "CS", 3802));
         courseList.add(new Course("Intro to Networking", "CS", 3251));
         courseList.add(new Course("Art History II", "COA", 2242));
+        httpContext = new BasicHttpContext();
     }
 
     public static Datamart getInstance() {
@@ -85,5 +90,19 @@ public class Datamart {
      */
     public void addAnnouncement(String ann) {
         announcements.add(ann);
+    }
+
+    /**
+     * getter for httpcontext
+     */
+    public HttpContext getHttpContext() {
+        return httpContext;
+    }
+
+    /**
+     * setter for the http context
+     */
+    public void setHttpContext(HttpContext httpContext) {
+        this.httpContext = httpContext;
     }
 }
