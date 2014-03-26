@@ -12,14 +12,16 @@ public class Datamart {
 	private ArrayList<Course> courseList;
 
     //Temporary to hold the announcements
-    private ArrayList<String> announcements;
+    private ArrayList<Announcement> announcements;
 	
 	public Datamart() {
 		courseList = new ArrayList<Course>();
-        announcements = new ArrayList<String>();
+        announcements = new ArrayList<Announcement>();
         courseList.add(new Course("Junior Design 2", "CS", 3802));
         courseList.add(new Course("Intro to Networking", "CS", 3251));
         courseList.add(new Course("Art History II", "COA", 2242));
+        announcements.add(new Announcement("Stuff Happened", "So, things and stuff. Also, other things.", false, new Date(0), 0));
+        announcements.add(new Announcement("More Things!", "These things are so great! Oh my god!", false, new Date(86400000), 0));
     }
 
     public static Datamart getInstance() {
@@ -76,7 +78,7 @@ public class Datamart {
      * Returns ArrayList if announcements
      * @return
      */
-    public List<String> getAnnouncements() {
+    public List<Announcement> getAnnouncements() {
         return announcements;
     }
 
@@ -84,6 +86,6 @@ public class Datamart {
      * Add announcement to the arraylist
      */
     public void addAnnouncement(String ann) {
-        announcements.add(ann);
+        announcements.add(new Announcement(ann));
     }
 }
