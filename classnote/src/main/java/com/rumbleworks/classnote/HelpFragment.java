@@ -35,6 +35,13 @@ public class HelpFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_help, container, false);
         //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+
+        Datamart.getInstance().setVisited(0, false);
+        Datamart.getInstance().setVisited(1, false);
+        Datamart.getInstance().setVisited(2, false);
+        Datamart.getInstance().setVisited(3, false);
+        Datamart.getInstance().setVisited(4, false);
+
         return rootView;
     }
 }
