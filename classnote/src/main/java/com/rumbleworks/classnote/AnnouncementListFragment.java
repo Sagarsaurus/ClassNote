@@ -1,7 +1,7 @@
 package com.rumbleworks.classnote;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AnnouncementListFragment extends Fragment {
+public class AnnouncementListFragment extends ListFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -34,6 +34,8 @@ public class AnnouncementListFragment extends Fragment {
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
+
+        this.setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), this.getActivity()));
 
         return rootView;
     }

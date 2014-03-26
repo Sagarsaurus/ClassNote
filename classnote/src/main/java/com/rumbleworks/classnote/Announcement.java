@@ -8,14 +8,19 @@ import java.util.Date;
  * show it in our upcoming list
  */
 
-public class Announcement {
+public class Announcement implements Comparable<Announcement> {
 
 	public String name;
 	public String description;
 	public Boolean isRead;
 	public Date dueDate;
 	public int courseNumber;
-	
+
+    //Temporary description-only constructor
+    public Announcement(String description) {
+        this("Nil", description, false, new Date(), 0);
+    }
+
 	public Announcement(String name, String description, Boolean isRead, Date dueDate, int courseNumber) {
 		this.name = name;
 		this.description = description;
@@ -76,5 +81,10 @@ public class Announcement {
 	public void setCourseNumber(int courseNumber) {
 		this.courseNumber = courseNumber;
 	}
+
+    @Override
+    public int compareTo(Announcement announcement) {
+        return dueDate.compareTo(announcement.dueDate);
+    }
 
 }

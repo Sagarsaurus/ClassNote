@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/classnote" />
+            <option value="C:\Users\Peter\Documents\AndroidStudioProjects\ClassNote" />
+            <option value="C:\Users\Peter\Documents\AndroidStudioProjects\ClassNote\classnote" />
           </set>
         </option>
       </GradleProjectSettings>
