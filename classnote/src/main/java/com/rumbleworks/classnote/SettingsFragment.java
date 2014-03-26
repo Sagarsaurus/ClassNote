@@ -37,10 +37,13 @@ public class SettingsFragment extends Fragment {
         //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), OverlayActivity.class);
-        startActivity(intent);
-        //finish();
+        if ( Datamart.getInstance().getVisited()[5] == false ) {
+            Datamart.getInstance().setVisited(5, true);
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), OverlayActivity.class);
+            startActivity(intent);
+            //finish();
+        }
 
         return rootView;
     }

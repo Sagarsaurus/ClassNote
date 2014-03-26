@@ -2,6 +2,7 @@ package com.rumbleworks.classnote;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -59,36 +60,43 @@ public class CompassActivity extends ActionBarActivity
 
         switch (position) {
             case 0:
+                Datamart.getInstance().setCurrentScreen( 0 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new AnnouncementListFragment())
                         .commit();
                 break;
             case 1:
+                Datamart.getInstance().setCurrentScreen( 1 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new AssignmentListFragment())
                         .commit();
                 break;
             case 2:
+                Datamart.getInstance().setCurrentScreen( 2 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new AssignmentCalendarFragment())
                         .commit();
                 break;
             case 3:
+                Datamart.getInstance().setCurrentScreen( 3 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new GradebookFragment())
                         .commit();
                 break;
             case 4:
+                Datamart.getInstance().setCurrentScreen( 4 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new AddAssignmentFragment())
                         .commit();
                 break;
             case 5:
+                Datamart.getInstance().setCurrentScreen( 5 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new SettingsFragment())
                         .commit();
                 break;
             case 6:
+                Datamart.getInstance().setCurrentScreen( 6 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new HelpFragment())
                         .commit();

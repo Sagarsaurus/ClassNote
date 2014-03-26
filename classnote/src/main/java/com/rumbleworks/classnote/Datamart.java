@@ -11,7 +11,8 @@ public class Datamart {
 
 	private ArrayList<Course> courseList;
 
-    private boolean[] visited = { false, false, false, false, false, false, false };
+    private boolean[] visited = { false, false, false, false, false, true, true };
+    private int currentScreen = 0;
 
     //Temporary to hold the announcements
     private ArrayList<Announcement> announcements;
@@ -94,5 +95,14 @@ public class Datamart {
     }
     public void setVisited( int index, boolean value ) {
         visited[ index ] = value;
+    }
+
+
+    public int getCurrentScreen() {
+        return currentScreen;
+    }
+    public void setCurrentScreen( int currentScreen ) {
+
+        this.currentScreen = currentScreen;
     }
 }
