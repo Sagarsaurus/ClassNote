@@ -26,7 +26,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Iterator;
 import java.util.List;
 
 import java.util.concurrent.Future;
@@ -34,7 +33,7 @@ import java.util.concurrent.Future;
 
 public class TSquareAPI {
     public static BasicCookieStore cookieStore = new BasicCookieStore();
-    private static final String BASE_URL = "https://t-square.gatech.edu/direct";
+    public static final String BASE_URL = "https://t-square.gatech.edu/direct";
 
     public static void login(final String username, final String password, final JsonHttpResponseHandler handler) {
         Thread thread = new Thread(new Runnable() {
@@ -89,6 +88,7 @@ public class TSquareAPI {
      * @param handler Handler for the request
      */
     public static void get(final String resource, final JsonHttpResponseHandler handler) {
+        AsyncHttpClient client = new AsyncHttpClient();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -119,7 +119,7 @@ public class TSquareAPI {
     /**
      * Returns a list of announcements for a given user
      */
-    public static void refreshAnnouncments()
+    public static void refreshAnnouncements()
     {
 
 //        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
@@ -165,6 +165,13 @@ public class TSquareAPI {
      */
     public static String stripHtml(String html) {
         return Html.fromHtml(html).toString();
+    }
+
+    /**
+     * Getter for the Base URL
+     */
+    public String getBaseUrl() {
+        return BASE_URL;
     }
 }
 
