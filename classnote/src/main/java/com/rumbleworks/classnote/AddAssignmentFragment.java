@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -53,6 +54,11 @@ public class AddAssignmentFragment extends Fragment {
                 //AddAssignmentActivity.this.finish();
             }
         });
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), OverlayActivity.class);
+        startActivity(intent);
+        //finish();
 
         return rootView;
     }

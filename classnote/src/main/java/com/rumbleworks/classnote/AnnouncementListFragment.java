@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.Html;
@@ -38,6 +39,11 @@ public class AnnouncementListFragment extends ListFragment {
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), OverlayActivity.class);
+        startActivity(intent);
+        //finish();
 
         return rootView;
     }

@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +23,12 @@ public class GradebookFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_gradebook, container, false);
         //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
         //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), OverlayActivity.class);
+        startActivity(intent);
+        //finish();
+
         return rootView;
     }
 }

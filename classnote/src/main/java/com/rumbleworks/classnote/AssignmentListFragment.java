@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ListFragment;
@@ -32,6 +33,11 @@ public class AssignmentListFragment extends ListFragment {
         View rootView = inflater.inflate(R.layout.fragment_assignment_list, container, false);
 
         this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), OverlayActivity.class);
+        startActivity(intent);
+        //finish();
 
         return rootView;
     }
