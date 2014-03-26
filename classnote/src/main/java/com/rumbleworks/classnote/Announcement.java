@@ -14,19 +14,19 @@ public class Announcement implements Comparable<Announcement> {
 	public String description;
 	public Boolean isRead;
 	public Date dueDate;
-	public int courseNumber;
+	public String courseName;
 
-    //Temporary description-only constructor
-    public Announcement(String description) {
-        this("Nil", description, false, new Date(), 0);
-    }
+//    //Temporary description-only constructor
+//    //public Announcement(String description) {
+//        this("Nil", description, false, new Date(), " ");
+//    }
 
-	public Announcement(String name, String description, Boolean isRead, Date dueDate, int courseNumber) {
+	public Announcement(String name, String description, Boolean isRead, Date dueDate, String courseName) {
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
 		this.dueDate = dueDate;
-		this.courseNumber = courseNumber;
+		this.courseName = courseName;
 	}
 	
 	public String getName() {
@@ -52,9 +52,9 @@ public class Announcement implements Comparable<Announcement> {
 	}
 	
 	
-	public int getCourseNumber() {
+	public String getCourseName() {
 		// TODO Auto-generated method stub
-		return courseNumber;
+		return courseName;
 	}
 
 	
@@ -78,8 +78,8 @@ public class Announcement implements Comparable<Announcement> {
 	}
 
 	
-	public void setCourseNumber(int courseNumber) {
-		this.courseNumber = courseNumber;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
     @Override

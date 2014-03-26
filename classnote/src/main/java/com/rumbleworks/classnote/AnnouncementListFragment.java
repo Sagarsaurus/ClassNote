@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class AnnouncementListFragment extends ListFragment {
     /**
      * The fragment argument representing the section number for this
@@ -36,7 +38,6 @@ public class AnnouncementListFragment extends ListFragment {
         //View topLevelLayout = rootfindViewById(R.id.top_layout);
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
-        this.setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), this.getActivity()));
 
         return rootView;
     }
@@ -48,7 +49,7 @@ public class AnnouncementListFragment extends ListFragment {
         client.setCookieStore(TSquareAPI.cookieStore);
 
         //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
-        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=5", new AsyncHttpResponseHandler() {
+        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=25", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(String response) {
@@ -59,14 +60,24 @@ public class AnnouncementListFragment extends ListFragment {
 
                     //Need to trim the message to remove tags
                     for (int i = 0; i < len; i++) {
-                        Log.d("Ann", stripHtml(ann.getJSONObject(i).getString("body")));
-                        Datamart.getInstance().addAnnouncement((stripHtml(ann.getJSONObject(i).getString("body"))));
+                        Datamart.getInstance().addAnnouncement(
+                                ann.getJSONObject(i).getString("title"),
+                                (stripHtml(ann.getJSONObject(i).getString("body"))),
+                                new Date(ann.getJSONObject(i).getLong("createdOn")),
+                                ann.getJSONObject(i).getString("siteTitle")
+                        );
                     }
                 }
                 catch (JSONException e) {
 
                 }
             }
+
+            @Override
+            public void onFinish() {
+                setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
+            }
+
         });
     }
 

@@ -144,7 +144,7 @@ public class TSquareAPI {
                     //Need to trim the message to remove tags
                     for (int i = 0; i < len; i++) {
                         Log.d("Ann", stripHtml(ann.getJSONObject(i).getString("body")));
-                        Datamart.getInstance().addAnnouncement((stripHtml(ann.getJSONObject(i).getString("body"))));
+                        //Datamart.getInstance().addAnnouncement((stripHtml(ann.getJSONObject(i).getString("body"))));
                     }
                 }
                 catch (Exception e)
