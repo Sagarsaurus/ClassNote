@@ -11,9 +11,11 @@ public class Datamart {
 
 	private ArrayList<Course> courseList;
 
+    private boolean[] visited = { false, false, false, false, false, false, false };
+
     //Temporary to hold the announcements
     private ArrayList<Announcement> announcements;
-	
+
 	public Datamart() {
         courseList = new ArrayList<Course>();
         announcements = new ArrayList<Announcement>();
@@ -85,5 +87,12 @@ public class Datamart {
      */
     public void addAnnouncement(String title, String description, Date date, String site) {
         announcements.add(new Announcement(title, description, false, date, site));
+    }
+
+    public boolean[] getVisited() {
+        return visited;
+    }
+    public void setVisited( int index, boolean value ) {
+        visited[ index ] = value;
     }
 }

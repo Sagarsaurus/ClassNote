@@ -34,10 +34,13 @@ public class AssignmentListFragment extends ListFragment {
 
         this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
 
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), OverlayActivity.class);
-        startActivity(intent);
-        //finish();
+        if ( Datamart.getInstance().getVisited()[1] == false ) {
+            Datamart.getInstance().setVisited(1, true);
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), OverlayActivity.class);
+            startActivity(intent);
+            //finish();
+        }
 
         return rootView;
     }

@@ -55,11 +55,13 @@ public class AddAssignmentFragment extends Fragment {
             }
         });
 
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), OverlayActivity.class);
-        startActivity(intent);
-        //finish();
-
+        if ( Datamart.getInstance().getVisited()[4] == false ) {
+            Datamart.getInstance().setVisited(4, true);
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), OverlayActivity.class);
+            startActivity(intent);
+            //finish();
+        }
         return rootView;
     }
 }

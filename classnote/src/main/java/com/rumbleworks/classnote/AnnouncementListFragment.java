@@ -40,10 +40,13 @@ public class AnnouncementListFragment extends ListFragment {
         //topLevelLayout.setVisibility(View.INVISIBLE);
         refreshAnnouncements();
 
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), OverlayActivity.class);
-        startActivity(intent);
-        //finish();
+        if ( Datamart.getInstance().getVisited()[0] == false ) {
+            Datamart.getInstance().setVisited(0, true);
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), OverlayActivity.class);
+            startActivity(intent);
+            //finish();
+        }
 
         return rootView;
     }
