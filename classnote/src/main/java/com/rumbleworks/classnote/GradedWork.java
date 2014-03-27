@@ -1,8 +1,9 @@
 package com.rumbleworks.classnote;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class GradedWork {
+public class GradedWork implements Serializable {
 
 	public String name;
 	public String description;

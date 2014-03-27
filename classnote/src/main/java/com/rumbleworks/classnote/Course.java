@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * and the other for Announcements from the professor
  */
 
-public class Course {
+public class Course implements Serializable {
     private String courseName;
 	private String courseSchool;
 	private int courseNumber;
@@ -53,10 +54,12 @@ public class Course {
 
     public void addAssignment(Assignment assignment) {
         assignmentList.add(assignment);
+        Datamart.getInstance().save();
     }
 
     public void addAnnouncement(Announcement announcement) {
         announcementList.add(announcement);
+        Datamart.getInstance().save();
     }
 
 

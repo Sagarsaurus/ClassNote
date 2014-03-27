@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * show it in our upcoming list
  */
 
-public class Announcement implements Comparable<Announcement> {
+public class Announcement implements Comparable<Announcement>, Serializable {
 
 	public String name;
 	public String description;

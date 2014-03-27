@@ -1,11 +1,22 @@
 package com.rumbleworks.classnote;
 
+import android.app.Activity;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Datamart {
+public class Datamart implements Serializable {
+
+    static String SAVE_FILE_NAME = "datamart-serialized.txt";
 
     static Datamart instance;
 
@@ -27,9 +38,62 @@ public class Datamart {
 
     public static Datamart getInstance() {
         if (instance == null) {
-            instance = new Datamart();
+            instance = load();
+            if (instance == null || !(instance instanceof Datamart)) {
+                instance = new Datamart();
+            }
         }
         return instance;
+    }
+
+    public void save() {
+        ObjectOutputStream objectOut = null;
+        try {
+
+            FileOutputStream fileOut = ClassNoteApp.getApplication().getApplicationContext().openFileOutput(SAVE_FILE_NAME, Activity.MODE_PRIVATE);
+
+            objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this);
+            fileOut.getFD().sync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (objectOut != null) {
+                try {
+                    objectOut.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+    }
+
+    public static Datamart load() {
+        ObjectInputStream objectIn = null;
+        Object object = null;
+        try {
+            ClassNoteApp application = ClassNoteApp.getApplication();
+            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_NAME);
+            objectIn = new ObjectInputStream(fileIn);
+            object = objectIn.readObject();
+
+        } catch (FileNotFoundException e) {
+            // Do nothing
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (objectIn != null) {
+                try {
+                    objectIn.close();
+                } catch (IOException e) {
+                    // do nowt
+                }
+            }
+        }
+
+        return (Datamart)object;
+
     }
 
     public List<String> getCourseIds() {
@@ -73,6 +137,7 @@ public class Datamart {
 
     public void addCourse(Course c) {
         courseList.add(c);
+        save();
     }
 
     /**
@@ -88,6 +153,7 @@ public class Datamart {
      */
     public void addAnnouncement(String title, String description, Date date, String site) {
         announcements.add(new Announcement(title, description, false, date, site));
+        save();
     }
 
     public boolean[] getVisited() {
@@ -95,6 +161,7 @@ public class Datamart {
     }
     public void setVisited( int index, boolean value ) {
         visited[ index ] = value;
+        save();
     }
 
 

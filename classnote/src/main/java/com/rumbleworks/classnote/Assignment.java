@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * and be able to be added to the final grade of the course
  */
 
-public class Assignment extends GradedWork implements Comparable<Assignment> {
+public class Assignment extends GradedWork implements Comparable<Assignment>, Serializable {
 	
 	public Assignment(String name, String description, Boolean isRead, Date dueDate, String courseId, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
 		super(name, description, isRead, dueDate, courseId, pointsEarned, pointsPossible, overallScore, percentageOfFinal);

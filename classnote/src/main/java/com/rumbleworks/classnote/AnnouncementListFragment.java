@@ -47,6 +47,7 @@ public class AnnouncementListFragment extends ListFragment {
             startActivity(intent);
             //finish();
         }
+        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
 
         return rootView;
     }
