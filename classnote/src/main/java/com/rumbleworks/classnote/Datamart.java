@@ -2,6 +2,9 @@ package com.rumbleworks.classnote;
 
 import android.app.Activity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +24,8 @@ public class Datamart implements Serializable {
     static Datamart instance;
 
 	private ArrayList<Course> courseList;
+    private ArrayList<JSONObject> propsObject;
+
 
     private boolean[] visited = { false, false, false, false, false, true, true };
     private int currentScreen = 0;
@@ -31,6 +36,7 @@ public class Datamart implements Serializable {
 	public Datamart() {
         courseList = new ArrayList<Course>();
         announcements = new ArrayList<Announcement>();
+        propsObject = new ArrayList<JSONObject>();
         courseList.add(new Course("Junior Design 2", "CS", 3802));
         courseList.add(new Course("Intro to Networking", "CS", 3251));
         courseList.add(new Course("Art History II", "COA", 2242));
@@ -172,4 +178,17 @@ public class Datamart implements Serializable {
 
         this.currentScreen = currentScreen;
     }
+
+    public ArrayList<JSONObject> getPropsObject() {
+        return propsObject;
+    }
+
+    public void setPropsObject( ArrayList<JSONObject> propsObject) {
+        this.propsObject = propsObject;
+    }
+
+    public void addPropsObject( JSONObject jsonObject ) {
+        this.propsObject.add(jsonObject);
+    }
+
 }
