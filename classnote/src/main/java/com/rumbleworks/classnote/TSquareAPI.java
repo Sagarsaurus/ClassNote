@@ -1,5 +1,6 @@
 package com.rumbleworks.classnote;
 
+import android.provider.ContactsContract;
 import android.text.Html;
 import android.util.Log;
 
@@ -121,11 +122,6 @@ public class TSquareAPI {
     public static void refreshAnnouncements()
     {
 
-//        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-//        Future<String> f = asyncHttpClient.prepareGet("http://www.ning.com/").execute();
-//        Strgin r = f.get();
-
-
         //List to return the announcements in ArrayList form from the JSONObject
         List<String> annList = new ArrayList<String>();
 
@@ -156,6 +152,7 @@ public class TSquareAPI {
             }
         });
     }
+
 
     /**
      * Stripping html tags from the message
