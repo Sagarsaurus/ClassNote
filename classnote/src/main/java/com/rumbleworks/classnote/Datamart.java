@@ -152,6 +152,11 @@ public class Datamart implements Serializable {
      * Add announcement to the arraylist
      */
     public void addAnnouncement(String title, String description, Date date, String site) {
+        for (Announcement announcement : announcements) {
+            if (title.equals(announcement.getName()) && date.equals(announcement.getDueDate()) && site.equals(announcement.getCourseName())) {
+                return;
+            }
+        }
         announcements.add(new Announcement(title, description, false, date, site));
         save();
     }
