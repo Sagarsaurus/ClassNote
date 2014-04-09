@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-public class Datamart implements Serializable {
+public class Datamart extends Observable implements Serializable {
 
     static String SAVE_FILE_NAME = "datamart-serialized.txt";
 
@@ -37,9 +38,6 @@ public class Datamart implements Serializable {
         courseList = new ArrayList<Course>();
         announcements = new ArrayList<Announcement>();
         propsObject = new ArrayList<JSONObject>();
-        courseList.add(new Course("Junior Design 2", "CS", 3802));
-        courseList.add(new Course("Intro to Networking", "CS", 3251));
-        courseList.add(new Course("Art History II", "COA", 2242));
     }
 
     public static Datamart getInstance() {
@@ -53,6 +51,8 @@ public class Datamart implements Serializable {
     }
 
     public void save() {
+        this.setChanged();
+        this.notifyObservers();
         ObjectOutputStream objectOut = null;
         try {
 
@@ -102,17 +102,17 @@ public class Datamart implements Serializable {
 
     }
 
-    public List<String> getCourseIds() {
-        ArrayList<String> courseIds = new ArrayList<String>();
+    public List<String> getCourseTitles() {
+        ArrayList<String> courseTitles = new ArrayList<String>();
         for (Course c : courseList) {
-            courseIds.add(c.getCourseId());
+            courseTitles.add(c.getTitle());
         }
-        return courseIds;
+        return courseTitles;
     }
 
-    public Course getCourseById(String courseId) {
+    public Course getCourseByTitle(String title) {
         for (Course c : courseList) {
-            if (c.getCourseId().equals(courseId)) return c;
+            if (c.getTitle().equals(title)) return c;
         }
         return null;
     }
@@ -129,7 +129,7 @@ public class Datamart implements Serializable {
         List<Assignment> list = new LinkedList<Assignment>();
         for (Course c : getCourseList()) {
             for (Assignment a : c.getAssignmentList()) {
-                if (a.getDueDate().after(new Date())) {
+                if (a != null && a.getDueDate().after(new Date())) {
                     list.add(a);
                 }
             }
@@ -142,8 +142,10 @@ public class Datamart implements Serializable {
     }
 
     public void addCourse(Course c) {
+        for (Course course : courseList) {
+            if (course.getSiteId().equals(c.getSiteId())) return;
+        }
         courseList.add(c);
-        save();
     }
 
     /**
@@ -164,7 +166,6 @@ public class Datamart implements Serializable {
             }
         }
         announcements.add(new Announcement(title, description, false, date, site));
-        save();
     }
 
     public boolean[] getVisited() {

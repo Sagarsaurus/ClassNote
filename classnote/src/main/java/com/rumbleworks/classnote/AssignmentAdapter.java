@@ -22,13 +22,14 @@ public class AssignmentAdapter extends BaseAdapter {
     private SimpleDateFormat dateFormat;
 
     public AssignmentAdapter(List<Assignment> list, Activity activity) {
-        this.list = list;
+        this.setList(list);
         this.activity = activity;
         dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
     }
 
     public void setList(List<Assignment> list) {
         Collections.sort(list);
+        Collections.reverse(list);
         this.list = list;
     }
 

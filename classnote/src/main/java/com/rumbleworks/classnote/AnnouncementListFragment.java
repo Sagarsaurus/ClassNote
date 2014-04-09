@@ -19,8 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
-public class AnnouncementListFragment extends ListFragment {
+public class AnnouncementListFragment extends ListFragment implements Observer {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -31,72 +33,31 @@ public class AnnouncementListFragment extends ListFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_announcement_list, container, false);
-        //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-        //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-        //View topLevelLayout = rootfindViewById(R.id.top_layout);
-        //topLevelLayout.setVisibility(View.INVISIBLE);
-        refreshAnnouncements();
 
         if ( Datamart.getInstance().getVisited()[0] == false ) {
             Datamart.getInstance().setVisited(0, true);
             Intent intent = new Intent();
             intent.setClass(getActivity(), OverlayActivity.class);
             startActivity(intent);
-            //finish();
         }
         setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
-
         return rootView;
     }
 
-    public void refreshAnnouncements() {
-        AsyncHttpClient client = new AsyncHttpClient();
-        //HttpContext httpContext = Datamart.getInstance().getHttpContext();
-        //Log.d("Cookie Store", httpContext.toString());
-        client.setCookieStore(TSquareAPI.cookieStore);
-
-        //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
-        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=25", new AsyncHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(String response) {
-                try {
-                    JSONObject res = new JSONObject(response);
-                    JSONArray ann = res.getJSONArray("announcement_collection");
-                    int len = ann.length();
-
-                    //Need to trim the message to remove tags
-                    for (int i = 0; i < len; i++) {
-                        Datamart.getInstance().addAnnouncement(
-                                ann.getJSONObject(i).getString("title"),
-                                (stripHtml(ann.getJSONObject(i).getString("body"))),
-                                new Date(ann.getJSONObject(i).getLong("createdOn")),
-                                ann.getJSONObject(i).getString("siteTitle")
-                        );
-                    }
-                }
-                catch (JSONException e) {
-
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
-            }
-
-        });
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Datamart.getInstance().addObserver(this);
     }
 
-    /**
-     * Stripping html tags from the message
-     * @param html
-     * @return
-     */
-    public static String stripHtml(String html) {
-        return Html.fromHtml(html).toString();
+    public void onDestroy() {
+        super.onDestroy();
+        Datamart.getInstance().deleteObserver(this);
     }
+
+    public void update(Observable observable, Object data) {
+        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
+    }
+
 }

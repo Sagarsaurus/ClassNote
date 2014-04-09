@@ -12,36 +12,33 @@ import java.util.List;
  */
 
 public class Course implements Serializable {
-    private String courseName;
-	private String courseSchool;
-	private int courseNumber;
-	
+    private String title, siteId;
+
 	private ArrayList<Assignment> assignmentList;
 	private ArrayList<Announcement> announcementList;
 	
-	public Course(String courseName, String courseSchool, int courseNumber) {
-		this.courseName = courseName;
-		this.courseSchool = courseSchool;
-		this.courseNumber = courseNumber;
-		
+	public Course(String title, String siteId) {
+		this.title = title;
+		this.siteId = siteId;
+
 		this.assignmentList = new ArrayList<Assignment>();
 		this.announcementList = new ArrayList<Announcement>();
 	}
 
-    public String getCourseId() {
-        return courseSchool+" "+courseNumber;
+    public String getTitle() {
+        return title;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getCourseSchool() {
-        return courseSchool;
+    public String getSiteId() {
+        return siteId;
     }
 
-    public int getCourseNumber() {
-        return courseNumber;
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
     }
 
     public List<Assignment> getAssignmentList() {
@@ -53,13 +50,16 @@ public class Course implements Serializable {
     }
 
     public void addAssignment(Assignment assignment) {
+        if (assignment.getId() != null) {
+            for (Assignment a : assignmentList) {
+                if (a.getId().equals(assignment.getId())) return;
+            }
+        }
         assignmentList.add(assignment);
-        Datamart.getInstance().save();
     }
 
     public void addAnnouncement(Announcement announcement) {
         announcementList.add(announcement);
-        Datamart.getInstance().save();
     }
 
 

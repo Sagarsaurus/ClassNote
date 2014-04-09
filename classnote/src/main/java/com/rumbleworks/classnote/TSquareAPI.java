@@ -5,6 +5,8 @@ import android.text.Html;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -35,124 +38,133 @@ public class TSquareAPI {
     public static BasicCookieStore cookieStore = new BasicCookieStore();
     public static final String BASE_URL = "https://t-square.gatech.edu/direct";
 
-    public static void login(final String username, final String password, final JsonHttpResponseHandler handler) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Create a new HttpClient and Post Header
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("https://t-square.gatech.edu/direct/session");
-                    HttpContext httpContext = new BasicHttpContext();
-
-                    httpContext.setAttribute(ClientContext.COOKIE_STORE, TSquareAPI.cookieStore);
-
-                    // Add your data
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                    nameValuePairs.add(new BasicNameValuePair("_username", username));
-                    nameValuePairs.add(new BasicNameValuePair("_password", password));
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                    // Execute HTTP Post Request
-                    HttpResponse response = httpclient.execute(httppost, httpContext);
-                    String responseStr = EntityUtils.toString(response.getEntity());
-                    if (response.getStatusLine().getStatusCode() == 201) {
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("session_id", responseStr);
-                        if (handler != null) {
-                            handler.onSuccess(jsonObject);
-                        }
-                    } else {
-                        if (handler != null) handler.onFailure();
-                    }
-                } catch (ClientProtocolException e) {
-                    // TODO Auto-generated catch block
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                } catch (JSONException e) {}
-            }
-        });
-        thread.start();
-    }
-
-    // eventually use this to see if the users session has expired
-    public static void getSession(final JsonHttpResponseHandler handler) {
-        get("/session.json", handler);
-    }
-
-
-    /**
-     * Making get requests to TSquare given
-     * BASE_URL tsquare.gatech.edu/direct/
-     * @param resource appended to base URL
-     * @param handler Handler for the request
-     */
-    public static void get(final String resource, final JsonHttpResponseHandler handler) {
+    public static void login(final String username, final String password, final AsyncResultHandler handler) {
+        // Create a new HttpClient and Post Header
         AsyncHttpClient client = new AsyncHttpClient();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    HttpClient httpClient = new DefaultHttpClient();
-                    HttpContext httpContext = new BasicHttpContext();
-
-                    httpContext.setAttribute(ClientContext.COOKIE_STORE, TSquareAPI.cookieStore);
-
-                    HttpRequestBase request = new HttpGet(BASE_URL+resource);
-                    HttpResponse response = httpClient.execute(request, httpContext);
-                    String responseStr = EntityUtils.toString(response.getEntity());
-                    if (response.getStatusLine().getStatusCode() >= 200 && response.getStatusLine().getStatusCode() < 300) {
-                        if (handler != null) {
-                            JSONObject jsonObject = new JSONObject(responseStr);
-                            handler.onSuccess(jsonObject);
-                        }
-                    } else {
-                        if (handler != null) handler.onFailure();
-                    }
-                } catch (Exception e) {}
-
+        client.setCookieStore(TSquareAPI.cookieStore);
+        client.post(TSquareAPI.BASE_URL+"/session", new RequestParams("_username", username, "_password", password), new AsyncHttpResponseHandler() {
+            public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
+                if (statusCode == 201) {
+                    if (handler != null) handler.onSuccess();
+                } else {
+                    if (handler != null) handler.onFailure();
+                }
             }
         });
-        thread.start();
     }
 
-    /**
-     * Returns a list of announcements for a given user
-     */
-    public static void refreshAnnouncements()
-    {
+    public static void refreshAnnouncements() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setCookieStore(TSquareAPI.cookieStore);
 
-        //List to return the announcements in ArrayList form from the JSONObject
-        List<String> annList = new ArrayList<String>();
+        //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
+        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=25", new AsyncHttpResponseHandler() {
 
-        //Get request to TSquare d = number of days, n = number of items
-        get("/announcement/user.json?d=50&n=20", new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(JSONObject object) {
-                //Iterating through the JSONObject returned by the request
-                //Iterator<String> iter = object.keys();
+            public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
                 try {
-                    JSONArray ann = object.getJSONArray("announcement_collection");
+                    JSONObject res = new JSONObject(new String(responseBody));
+                    JSONArray ann = res.getJSONArray("announcement_collection");
                     int len = ann.length();
 
                     //Need to trim the message to remove tags
                     for (int i = 0; i < len; i++) {
-                        Log.d("Ann", stripHtml(ann.getJSONObject(i).getString("body")));
-                        //Datamart.getInstance().addAnnouncement((stripHtml(ann.getJSONObject(i).getString("body"))));
+                        Datamart.getInstance().addAnnouncement(
+                                ann.getJSONObject(i).getString("title"),
+                                (stripHtml(ann.getJSONObject(i).getString("body"))),
+                                new Date(ann.getJSONObject(i).getLong("createdOn")),
+                                ann.getJSONObject(i).getString("siteTitle")
+                        );
                     }
-                }
-                catch (Exception e)
-                {
+                    Datamart.getInstance().save();
+                } catch (JSONException e) {
 
                 }
             }
-            @Override
-            public void onFailure() {
-                Log.d("Fail", "No response");
-            }
+
         });
     }
 
+    public static void refreshAssignments() {
+        for (Course c : Datamart.getInstance().getCourseList()) {
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setCookieStore(TSquareAPI.cookieStore);
+
+            //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
+            final Course course = c;
+            client.get(TSquareAPI.BASE_URL + "/assignment/site/"+c.getSiteId()+".json", new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
+                    try {
+                        if (statusCode != 200) return;
+                        JSONObject res = new JSONObject(new String(responseBody));
+                        JSONArray assArray = res.getJSONArray("assignment_collection");
+                        for (int i = 0; i < assArray.length(); i++) {
+                            JSONObject assObject = assArray.optJSONObject(i);
+                            JSONObject dueDateObject = assObject.optJSONObject("dueTime");
+                            Date dueDate = null;
+                            if (dueDateObject != null) {
+                                long dueDateInt = dueDateObject.optLong("time");
+                                dueDate = dueDateInt > 0 ? new Date(dueDateInt) : null;
+                            }
+                            Assignment assignment = new Assignment(assObject.optString("id"),assObject.optString("title"),assObject.optString("instructions"),false, dueDate);
+
+                            course.addAssignment(assignment);
+                        }
+                        Datamart.getInstance().save();
+                    } catch (JSONException e) {}
+                }
+            });
+        }
+    }
+
+
+    // refresh sites and then refresh assignments and announcements when finished
+    public static void refreshAll() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setCookieStore(TSquareAPI.cookieStore);
+
+        //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
+        client.get(TSquareAPI.BASE_URL + "/site.json", new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
+                try {
+                    JSONObject siteObject = new JSONObject(new String(responseBody));
+                    JSONArray siteArray = siteObject.getJSONArray("site_collection");
+
+                    //Need to trim the message to remove tags
+                    for (int i = 0; i < siteArray.length(); i++) {
+                        JSONObject site = siteArray.optJSONObject(i);
+                        JSONObject props = site.optJSONObject("props");
+                        if (props == null) {
+                            System.out.println("no props");
+                            continue;
+                        }
+                        String term = props.optString("term");
+                        if (term == null || !term.equals("SPRING 2014")) {
+                            System.out.println("wrong term");
+                            continue;
+                        }
+
+                        Course c = new Course(site.optString("title"), site.optString("entityId"));
+                        Datamart.getInstance().addCourse(c);
+                    }
+                    Datamart.getInstance().save();
+                }
+                catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                TSquareAPI.refreshAnnouncements();
+                TSquareAPI.refreshAssignments();
+            }
+
+        });
+    }
 
     /**
      * Stripping html tags from the message
@@ -163,16 +175,6 @@ public class TSquareAPI {
         return Html.fromHtml(html).toString();
     }
 
-    /**
-     * Getter for the Base URL
-     */
-    public String getBaseUrl() {
-        return BASE_URL;
-    }
-
-    public BasicCookieStore getCookieStore() {
-        return cookieStore;
-    }
 }
 
 

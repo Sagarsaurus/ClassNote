@@ -18,13 +18,14 @@ public class AnnouncementAdapter extends BaseAdapter {
     private SimpleDateFormat dateFormat;
 
     public AnnouncementAdapter(List<Announcement> list, Activity activity) {
-        this.list = list;
+        this.setList(list);
         this.activity = activity;
         dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
     }
 
     public void setList(List<Announcement> list) {
         Collections.sort(list);
+        Collections.reverse(list);
         this.list = list;
     }
 

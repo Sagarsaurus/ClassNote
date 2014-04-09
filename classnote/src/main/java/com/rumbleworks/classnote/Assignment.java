@@ -9,13 +9,16 @@ import java.util.Date;
  */
 
 public class Assignment extends GradedWork implements Comparable<Assignment>, Serializable {
-	
-	public Assignment(String name, String description, Boolean isRead, Date dueDate, String courseId, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
-		super(name, description, isRead, dueDate, courseId, pointsEarned, pointsPossible, overallScore, percentageOfFinal);
-        Course c = Datamart.getInstance().getCourseById(courseId);
-        if (c == null) throw new IllegalArgumentException("Invalid course ID");
-        c.addAssignment(this);
-	}
+    private String id;
+
+	public Assignment(String id, String name, String description, Boolean isRead, Date dueDate) {
+		super(name, description, isRead, dueDate, 0,0,0,0);
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     @Override
     public int compareTo(Assignment assignment) {

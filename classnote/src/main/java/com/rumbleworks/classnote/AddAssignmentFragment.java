@@ -38,7 +38,7 @@ public class AddAssignmentFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_add_assignment, container, false);
 
         courseSpinner = (Spinner)rootView.findViewById(R.id.courseSpinner);
-        courseSpinner.setAdapter(new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, Datamart.getInstance().getCourseIds()));
+        courseSpinner.setAdapter(new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, Datamart.getInstance().getCourseTitles()));
 
         titleField = (EditText)rootView.findViewById(R.id.titleField);
         descField = (EditText)rootView.findViewById(R.id.descField);
@@ -50,8 +50,9 @@ public class AddAssignmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Calendar date = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
-                Assignment assignment = new Assignment(titleField.getText().toString(), descField.getText().toString(), true, date.getTime(), (String)courseSpinner.getSelectedItem(), -1, -1, -1, -1);
-                //AddAssignmentActivity.this.finish();
+                Course c = Datamart.getInstance().getCourseByTitle((String)courseSpinner.getSelectedItem());
+                Assignment assignment = new Assignment(null, titleField.getText().toString(), descField.getText().toString(), true, date.getTime());
+                c.addAssignment(assignment);
             }
         });
 

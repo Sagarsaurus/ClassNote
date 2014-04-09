@@ -9,19 +9,18 @@ public class GradedWork implements Serializable {
 	public String description;
 	public Boolean isRead;
 	public Date dueDate;
-	public String courseId;
+    public Course course;
 
 	public double pointsEarned;
 	public double pointsPossible;
 	public double overallScore;
 	public double percentageOfFinal;
 
-	public GradedWork(String name, String description, Boolean isRead, Date dueDate, String courseId, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
+	public GradedWork(String name, String description, Boolean isRead, Date dueDate, double pointsEarned, double pointsPossible, double overallScore, double percentageOfFinal) {
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
 		this.dueDate = dueDate;
-		this.courseId = courseId;
 		this.pointsEarned = pointsEarned;
 		this.pointsPossible = pointsPossible;
 		this.overallScore = overallScore;
@@ -53,8 +52,8 @@ public class GradedWork implements Serializable {
 	}
 
 
-	public String getCourseId() {
-		return courseId;
+	public Course getCourse() {
+		return course;
 	}
 
 
@@ -78,8 +77,8 @@ public class GradedWork implements Serializable {
 	}
 
 
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 
