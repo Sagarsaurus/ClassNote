@@ -23,7 +23,7 @@
         <!-- </activity> -->
         <activity
             android:name="com.rumbleworks.classnote.UpdateActivity"
-            android:label="@string/title_activity_update" >
+            android:label="ClassNote" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +41,7 @@
         <!-- <activity android:name=".NavigationActivity" /> -->
         <activity
             android:name="com.rumbleworks.classnote.CompassActivity"
-            android:label="@string/title_activity_compass" >
+            android:label="Navigation Menu">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
