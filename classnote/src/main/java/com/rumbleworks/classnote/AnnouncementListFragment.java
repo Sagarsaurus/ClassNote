@@ -3,22 +3,10 @@ package com.rumbleworks.classnote;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.protocol.HttpContext;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 

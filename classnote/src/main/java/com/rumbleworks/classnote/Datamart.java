@@ -2,7 +2,6 @@ package com.rumbleworks.classnote;
 
 import android.app.Activity;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
@@ -42,7 +41,7 @@ public class Datamart extends Observable implements Serializable {
 
     public static Datamart getInstance() {
         if (instance == null) {
-            instance = load();
+            //instance = load();
             if (instance == null || !(instance instanceof Datamart)) {
                 instance = new Datamart();
             }
