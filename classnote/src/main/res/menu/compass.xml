@@ -2,11 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rumbleworks.classnote.CompassActivity" >
-    <item android:id="@+id/action_example"
+    <item android:id="@+id/action_refresh"
         android:title="Refresh"
-        app:showAsAction="withText|ifRoom" />
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_help"
+        android:title="Help"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

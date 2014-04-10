@@ -18,13 +18,6 @@ public class UpdateActivity extends Activity {
 		setContentView(R.layout.activity_update);
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.update, menu);
-		return true;
-	}
-	
 	public void login( View view ) {
         EditText usernameField = (EditText)findViewById(R.id.usernameField);
         EditText passwordField = (EditText)findViewById(R.id.passwordField);
@@ -56,7 +49,5 @@ public class UpdateActivity extends Activity {
         });
 
 	}
-
-
 
 }

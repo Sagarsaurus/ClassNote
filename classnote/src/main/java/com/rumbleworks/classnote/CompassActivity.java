@@ -101,12 +101,6 @@ public class CompassActivity extends ActionBarActivity
                         .replace(R.id.container, new SettingsFragment())
                         .commit();
                 break;
-            case 7:
-                Datamart.getInstance().setCurrentScreen( 6 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new HelpFragment())
-                        .commit();
-                break;
         }
     }
 
@@ -132,9 +126,6 @@ public class CompassActivity extends ActionBarActivity
                 break;
             case 6:
                 mTitle = getString(R.string.title_section5);
-                break;
-            case 7:
-                mTitle = getString(R.string.title_section6);
                 break;
         }
     }
@@ -166,7 +157,14 @@ public class CompassActivity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_refresh) {
+            TSquareAPI.refreshAll();
+            return true;
+        }
+        if (id == R.id.action_help) {
+            Intent intent = new Intent();
+            intent.setClass(this, OverlayActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
