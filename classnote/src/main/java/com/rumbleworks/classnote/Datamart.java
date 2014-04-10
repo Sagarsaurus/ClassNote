@@ -134,6 +134,19 @@ public class Datamart extends Observable implements Serializable {
         return list;
     }
 
+    public List<Assignment> getPastAssignments() {
+        List<Assignment> list = new LinkedList<Assignment>();
+        for (Course c : getCourseList()) {
+            for (Assignment a : c.getAssignmentList()) {
+                if (a != null && a.getDueDate().before(new Date())) {
+                    list.add(a);
+                }
+            }
+        }
+        return list;
+    }
+
+
     public List<Course> getCourseList() {
         return courseList;
     }

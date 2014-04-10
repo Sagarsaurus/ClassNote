@@ -74,28 +74,34 @@ public class CompassActivity extends ActionBarActivity
             case 2:
                 Datamart.getInstance().setCurrentScreen( 2 );
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AssignmentCalendarFragment())
+                        .replace(R.id.container, new PastAssignmentListFragment())
                         .commit();
                 break;
             case 3:
                 Datamart.getInstance().setCurrentScreen( 3 );
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new GradebookFragment())
+                        .replace(R.id.container, new AssignmentCalendarFragment())
                         .commit();
                 break;
             case 4:
                 Datamart.getInstance().setCurrentScreen( 4 );
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AddAssignmentFragment())
+                        .replace(R.id.container, new GradebookFragment())
                         .commit();
                 break;
             case 5:
                 Datamart.getInstance().setCurrentScreen( 5 );
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new SettingsFragment())
+                        .replace(R.id.container, new AddAssignmentFragment())
                         .commit();
                 break;
             case 6:
+                Datamart.getInstance().setCurrentScreen( 6 );
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new SettingsFragment())
+                        .commit();
+                break;
+            case 7:
                 Datamart.getInstance().setCurrentScreen( 6 );
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new HelpFragment())
@@ -113,18 +119,21 @@ public class CompassActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = "Past Assignments";
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_section2);
                 break;
             case 4:
-                mTitle = getString(R.string.title_section4);
+                mTitle = getString(R.string.title_section3);
                 break;
             case 5:
-                mTitle = getString(R.string.title_section5);
+                mTitle = getString(R.string.title_section4);
                 break;
             case 6:
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 7:
                 mTitle = getString(R.string.title_section6);
                 break;
         }
