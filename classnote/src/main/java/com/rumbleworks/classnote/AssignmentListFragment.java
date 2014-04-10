@@ -6,6 +6,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -59,6 +60,17 @@ public class AssignmentListFragment extends ListFragment implements Observer {
 
     public void update(Observable observable, Object data) {
         this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
+    }
+
+
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        AssignmentAdapter adapter = (AssignmentAdapter)getListAdapter();
+        Assignment a = (Assignment)adapter.getItem(position);
+        Intent i = new Intent(this.getActivity(), AssignmentDetails.class);
+        i.putExtra("COURSE_ID", a.getId());
+        i.putExtra("DESCRIPTION", a.getDescription());
+        i.putExtra("DUE_DATE", a.getDueDate());
+        startActivity(i);
     }
 
 }

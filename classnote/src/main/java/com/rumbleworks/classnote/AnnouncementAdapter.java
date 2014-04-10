@@ -55,7 +55,7 @@ public class AnnouncementAdapter extends BaseAdapter {
         Announcement announcement = (Announcement) getItem(i);
         TextView titleText = (TextView) view.findViewById(R.id.assignmentTitle);
         TextView dueDateText = (TextView) view.findViewById(R.id.assignmentDueDate);
-        titleText.setText(announcement.getName());
+        titleText.setText(announcement.getCourseName()+": "+announcement.getName());
         dueDateText.setText(dateFormat.format(announcement.getDueDate()));
         return view;
     }

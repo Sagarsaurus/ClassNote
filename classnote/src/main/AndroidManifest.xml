@@ -59,6 +59,10 @@
             android:name="com.rumbleworks.classnote.AnnouncementDetails"
             android:label="@string/title_activity_announcement_details" >
         </activity>
+        <activity
+            android:name="com.rumbleworks.classnote.AssignmentDetails"
+            android:label="@string/title_activity_assignment_details" >
+        </activity>
     </application>
 
 </manifest>
