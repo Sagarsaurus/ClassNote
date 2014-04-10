@@ -56,11 +56,11 @@
             android:theme="@style/Theme.Transparent" >
         </activity>
         <activity
-            android:name="com.rumbleworks.classnote.AnnouncementDetails"
+            android:name=".AnnouncementDetailActivity"
             android:label="@string/title_activity_announcement_details" >
         </activity>
         <activity
-            android:name="com.rumbleworks.classnote.AssignmentDetails"
+            android:name=".AssignmentDetailActivity"
             android:label="@string/title_activity_assignment_details" >
         </activity>
     </application>
