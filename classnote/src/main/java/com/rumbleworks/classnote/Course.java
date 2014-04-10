@@ -12,6 +12,7 @@ import java.util.List;
  */
 
 public class Course implements Serializable {
+
     private String title, siteId;
 
 	private ArrayList<Assignment> assignmentList;
@@ -62,5 +63,10 @@ public class Course implements Serializable {
         announcementList.add(announcement);
     }
 
-
+    public boolean hasAnnouncement(Announcement announcement) {
+        if (announcementList.contains(announcement))
+            return true;
+        else
+            return false;
+    }
 }

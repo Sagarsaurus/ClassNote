@@ -16,13 +16,15 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 	public Boolean isRead;
 	public Date dueDate;
 	public String courseName;
+    public String id;
 
 //    //Temporary description-only constructor
 //    //public Announcement(String description) {
 //        this("Nil", description, false, new Date(), " ");
 //    }
 
-	public Announcement(String name, String description, Boolean isRead, Date dueDate, String courseName) {
+	public Announcement(String id, String name, String description, Boolean isRead, Date dueDate, String courseName) {
+        this.id = id;
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
@@ -88,4 +90,11 @@ public class Announcement implements Comparable<Announcement>, Serializable {
         return dueDate.compareTo(announcement.dueDate);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

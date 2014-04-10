@@ -23,5 +23,7 @@
     <string name="action_example">Example action</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_overlay">OverlayActivity</string>
+    <string name="title_activity_announcement_details">AnnouncementDetails</string>
+    <string name="title_activity_assignment_details">AssignmentDetails</string>
 
 </resources>

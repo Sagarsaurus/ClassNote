@@ -33,35 +33,42 @@ public class TSquareAPI {
     }
 
     public static void refreshAnnouncements() {
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.setCookieStore(TSquareAPI.cookieStore);
+        for (Course c : Datamart.getInstance().getCourseList()) {
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setCookieStore(TSquareAPI.cookieStore);
 
-        //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
-        client.get(TSquareAPI.BASE_URL + "/announcement/user.json?d=50&n=25", new AsyncHttpResponseHandler() {
+            //Execute get request using asynchttpclient for announcements 50 days old and 20 in number
+            final Course course = c;
+            client.get(TSquareAPI.BASE_URL + "/announcement/site/"+c.getSiteId()+".json", new AsyncHttpResponseHandler() {
 
-            @Override
-            public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
-                try {
-                    JSONObject res = new JSONObject(new String(responseBody));
-                    JSONArray ann = res.getJSONArray("announcement_collection");
-                    int len = ann.length();
+                @Override
+                public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
+                    try {
+                        JSONObject res = new JSONObject(new String(responseBody));
+                        JSONArray ann = res.getJSONArray("announcement_collection");
+                        int len = ann.length();
 
-                    //Need to trim the message to remove tags
-                    for (int i = 0; i < len; i++) {
-                        Datamart.getInstance().addAnnouncement(
-                                ann.getJSONObject(i).getString("title"),
-                                (stripHtml(ann.getJSONObject(i).getString("body"))),
-                                new Date(ann.getJSONObject(i).getLong("createdOn")),
-                                ann.getJSONObject(i).getString("siteTitle")
-                        );
+                        //Need to trim the message to remove tags
+                        for (int i = 0; i < len; i++) {
+                            Announcement announcement = new Announcement(
+                                    ann.getJSONObject(i).getString("id"),
+                                    ann.getJSONObject(i).getString("title"),
+                                    (stripHtml(ann.getJSONObject(i).getString("body"))),
+                                    false,
+                                    new Date(ann.getJSONObject(i).getLong("createdOn")),
+                                    ann.getJSONObject(i).getString("siteTitle"));
+                            if (!course.hasAnnouncement(announcement)) {
+                                course.addAnnouncement(announcement);
+                            }
+                        }
+                        Datamart.getInstance().save();
+                    } catch (JSONException e) {
+
                     }
-                    Datamart.getInstance().save();
-                } catch (JSONException e) {
-
                 }
-            }
 
-        });
+            });
+        }
     }
 
     public static void refreshAssignments() {
