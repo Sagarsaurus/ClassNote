@@ -6,6 +6,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -42,6 +43,16 @@ public class AnnouncementListFragment extends ListFragment implements Observer {
     public void onDestroy() {
         super.onDestroy();
         Datamart.getInstance().deleteObserver(this);
+    }
+
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        AnnouncementAdapter adapter = (AnnouncementAdapter)getListAdapter();
+        Announcement a = (Announcement)adapter.getItem(position);
+        Intent i = new Intent(this.getActivity(), AnnouncementDetails.class);
+        i.putExtra("COURSE_NAME", a.getCourseName());
+        i.putExtra("DESCRIPTION", a.getDescription());
+        i.putExtra("DUE_DATE", a.getDueDate());
+        startActivity(i);
     }
 
     public void update(Observable observable, Object data) {
