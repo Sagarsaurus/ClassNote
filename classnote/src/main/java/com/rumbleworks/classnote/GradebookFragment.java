@@ -31,16 +31,6 @@ public class GradebookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_gradebook, container, false);
-        //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-        //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-
-        if ( Datamart.getInstance().getVisited()[3] == false ) {
-            Datamart.getInstance().setVisited(3, true);
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), OverlayActivity.class);
-            startActivity(intent);
-            //finish();
-        }
 
         return rootView;
     }

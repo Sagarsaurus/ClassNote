@@ -1,24 +1,14 @@
 package com.rumbleworks.classnote;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 
 //CompassActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
@@ -43,7 +33,6 @@ public class CompassActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -58,75 +47,42 @@ public class CompassActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
+        Fragment fragment = null;
         switch (position) {
             case 0:
-                Datamart.getInstance().setCurrentScreen( 0 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AnnouncementListFragment())
-                        .commit();
-                break;
-            case 1:
-                Datamart.getInstance().setCurrentScreen( 1 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AssignmentListFragment())
-                        .commit();
-                break;
-            case 2:
-                Datamart.getInstance().setCurrentScreen( 2 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new PastAssignmentListFragment())
-                        .commit();
-                break;
-            case 3:
-                Datamart.getInstance().setCurrentScreen( 3 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AssignmentCalendarFragment())
-                        .commit();
-                break;
-            case 4:
-                Datamart.getInstance().setCurrentScreen( 4 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new GradebookFragment())
-                        .commit();
-                break;
-            case 5:
-                Datamart.getInstance().setCurrentScreen( 5 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AddAssignmentFragment())
-                        .commit();
-                break;
-            case 6:
-                Datamart.getInstance().setCurrentScreen( 6 );
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new SettingsFragment())
-                        .commit();
-                break;
-        }
-    }
-
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 0:
+                fragment = new AnnouncementListFragment();
                 mTitle = getString(R.string.title_section0);
                 break;
             case 1:
+                fragment = new AssignmentListFragment();
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
+                fragment = new PastAssignmentListFragment();
                 mTitle = "Past Assignments";
                 break;
             case 3:
+                fragment = new AssignmentCalendarFragment();
                 mTitle = getString(R.string.title_section2);
                 break;
             case 4:
+                fragment = new GradebookFragment();
                 mTitle = getString(R.string.title_section3);
                 break;
             case 5:
+                fragment = new AddAssignmentFragment();
                 mTitle = getString(R.string.title_section4);
                 break;
             case 6:
+                fragment = new SettingsFragment();
                 mTitle = getString(R.string.title_section5);
                 break;
+        }
+        if (fragment == null) return;
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        Datamart.getInstance().setCurrentScreen(position);
+        if (Datamart.getInstance().getVisited()[position] == false) {
+            this.showHelp();
         }
     }
 
@@ -162,54 +118,18 @@ public class CompassActivity extends ActionBarActivity
             return true;
         }
         if (id == R.id.action_help) {
-            Intent intent = new Intent();
-            intent.setClass(this, OverlayActivity.class);
-            startActivity(intent);
+            this.showHelp();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_compass, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((CompassActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
+    public void showHelp() {
+        Datamart.getInstance().setVisited(Datamart.getInstance().getCurrentScreen(), true);
+        Intent intent = new Intent();
+        intent.setClass(this, OverlayActivity.class);
+        intent.putExtra("title", getSupportActionBar().getTitle());
+        startActivity(intent);
     }
 
 }

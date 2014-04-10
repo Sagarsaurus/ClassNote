@@ -34,16 +34,6 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-        //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-        //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-
-        if ( Datamart.getInstance().getVisited()[5] == false ) {
-            Datamart.getInstance().setVisited(5, true);
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), OverlayActivity.class);
-            startActivity(intent);
-            //finish();
-        }
 
         return rootView;
     }

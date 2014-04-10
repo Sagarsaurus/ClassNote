@@ -21,16 +21,6 @@ public class AssignmentCalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_assignment_calendar, container, false);
-        //TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-        //dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-
-        if ( Datamart.getInstance().getVisited()[2] == false ) {
-            Datamart.getInstance().setVisited(2, true);
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), OverlayActivity.class);
-            startActivity(intent);
-            //finish();
-        }
 
         return rootView;
     }

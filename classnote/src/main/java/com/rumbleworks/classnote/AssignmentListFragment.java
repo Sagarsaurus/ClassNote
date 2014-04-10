@@ -3,6 +3,7 @@ package com.rumbleworks.classnote;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +36,6 @@ public class AssignmentListFragment extends ListFragment implements Observer {
         View rootView = inflater.inflate(R.layout.fragment_assignment_list, container, false);
 
         this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
-
-        if ( Datamart.getInstance().getVisited()[1] == false ) {
-            Datamart.getInstance().setVisited(1, true);
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), OverlayActivity.class);
-            startActivity(intent);
-            //finish();
-        }
 
         return rootView;
     }

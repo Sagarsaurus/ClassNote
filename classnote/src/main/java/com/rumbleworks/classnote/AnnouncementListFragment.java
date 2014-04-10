@@ -24,12 +24,6 @@ public class AnnouncementListFragment extends ListFragment implements Observer {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_announcement_list, container, false);
 
-        if ( Datamart.getInstance().getVisited()[0] == false ) {
-            Datamart.getInstance().setVisited(0, true);
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), OverlayActivity.class);
-            startActivity(intent);
-        }
         setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
         return rootView;
     }

@@ -29,6 +29,9 @@ public class OverlayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overlay);
 
+        String title = getIntent().getStringExtra("title");
+        if (title != null) setTitle(title);
+
         currentScreen = Datamart.getInstance().getCurrentScreen();
 
         TextView textView1 = (TextView) findViewById(R.id.textView1);
