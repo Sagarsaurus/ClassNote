@@ -24,7 +24,6 @@ public class Datamart extends Observable implements Serializable {
     static Datamart instance;
 
 	private ArrayList<Course> courseList;
-    private ArrayList<JSONObject> propsObject;
 
 
     private boolean[] visited = { false, false, false, false, false, true, true };
@@ -36,7 +35,6 @@ public class Datamart extends Observable implements Serializable {
 	public Datamart() {
         courseList = new ArrayList<Course>();
         announcements = new ArrayList<Announcement>();
-        propsObject = new ArrayList<JSONObject>();
     }
 
     public static Datamart getInstance() {
@@ -182,18 +180,6 @@ public class Datamart extends Observable implements Serializable {
     public void setCurrentScreen( int currentScreen ) {
 
         this.currentScreen = currentScreen;
-    }
-
-    public ArrayList<JSONObject> getPropsObject() {
-        return propsObject;
-    }
-
-    public void setPropsObject( ArrayList<JSONObject> propsObject) {
-        this.propsObject = propsObject;
-    }
-
-    public void addPropsObject( JSONObject jsonObject ) {
-        this.propsObject.add(jsonObject);
     }
 
 }
