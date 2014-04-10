@@ -25,13 +25,13 @@ public class AnnouncementListFragment extends ListFragment implements Observer {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_announcement_list, container, false);
 
-        if ( Datamart.getInstance().getVisited()[0] == false ) {
+        if (Datamart.getInstance().getVisited()[0] == false) {
             Datamart.getInstance().setVisited(0, true);
             Intent intent = new Intent();
             intent.setClass(getActivity(), OverlayActivity.class);
             startActivity(intent);
         }
-        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
+        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAllAnnouncements(), getActivity()));
         return rootView;
     }
 
@@ -51,12 +51,12 @@ public class AnnouncementListFragment extends ListFragment implements Observer {
         Intent i = new Intent(this.getActivity(), AnnouncementDetails.class);
         i.putExtra("COURSE_NAME", a.getCourseName());
         i.putExtra("DESCRIPTION", a.getDescription());
-        i.putExtra("DUE_DATE", a.getDueDate());
+        i.putExtra("DUE_DATE", a.getDueDate().toString());
         startActivity(i);
     }
 
     public void update(Observable observable, Object data) {
-        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAnnouncements(), getActivity()));
+        setListAdapter(new AnnouncementAdapter(Datamart.getInstance().getAllAnnouncements(), getActivity()));
     }
 
 }

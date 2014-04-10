@@ -12,6 +12,20 @@
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/announcement_details" />
+        android:id="@+id/announcement_details_class" />
+
+    <TextView
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/announcement_details_date"
+        android:layout_below="@+id/announcement_details_class" />
+
+    <TextView
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/announcement_details_description"
+        android:layout_below="@+id/announcement_details_date" />
 
 </RelativeLayout>

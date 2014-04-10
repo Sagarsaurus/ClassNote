@@ -29,12 +29,8 @@ public class Datamart extends Observable implements Serializable {
     private boolean[] visited = { false, false, false, false, false, true, true };
     private int currentScreen = 0;
 
-    //Temporary to hold the announcements
-    private ArrayList<Announcement> announcements;
-
 	public Datamart() {
         courseList = new ArrayList<Course>();
-        announcements = new ArrayList<Announcement>();
     }
 
     public static Datamart getInstance() {
@@ -114,6 +110,18 @@ public class Datamart extends Observable implements Serializable {
         return null;
     }
 
+    /**
+     * Getter for the announcements through the course
+     * @return
+     */
+    public List<Announcement> getAllAnnouncements() {
+        List<Announcement> list = new LinkedList<Announcement>();
+        for (Course c : getCourseList()) {
+            list.addAll(c.getAnnouncementList());
+        }
+        return list;
+    }
+
     public List<Assignment> getAllAssignments() {
         List<Assignment> list = new LinkedList<Assignment>();
         for (Course c : getCourseList()) {
@@ -156,26 +164,6 @@ public class Datamart extends Observable implements Serializable {
             if (course.getSiteId().equals(c.getSiteId())) return;
         }
         courseList.add(c);
-    }
-
-    /**
-     * Returns ArrayList if announcements
-     * @return
-     */
-    public List<Announcement> getAnnouncements() {
-        return announcements;
-    }
-
-    /**
-     * Add announcement to the arraylist
-     */
-    public void addAnnouncement(String title, String description, Date date, String site) {
-        for (Announcement announcement : announcements) {
-            if (title.equals(announcement.getName()) && date.equals(announcement.getDueDate()) && site.equals(announcement.getCourseName())) {
-                return;
-            }
-        }
-        announcements.add(new Announcement(title, description, false, date, site));
     }
 
     public boolean[] getVisited() {
