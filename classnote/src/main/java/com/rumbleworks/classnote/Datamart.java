@@ -19,12 +19,15 @@ import java.util.Observable;
 
 public class Datamart extends Observable implements Serializable {
 
-    static String SAVE_FILE_NAME = "datamart-serialized.txt";
+    static String SAVE_FILE_PREFIX = "datamart-";
 
     static Datamart instance;
 
 	private ArrayList<Course> courseList;
 
+    private static String currentUsername;
+
+    private String username;
 
     private boolean[] visited = { false, false, false, false, false, true, true };
     private int currentScreen = 0;
@@ -33,12 +36,17 @@ public class Datamart extends Observable implements Serializable {
         courseList = new ArrayList<Course>();
     }
 
+    public static void setCurrentUsername(String currentUsername) {
+        Datamart.currentUsername = currentUsername;
+    }
+
     public static Datamart getInstance() {
-        if (instance == null) {
-            //instance = load();
+        if (instance == null || instance.username == null || !instance.username.equals(Datamart.currentUsername)) {
+            instance = load();
             if (instance == null || !(instance instanceof Datamart)) {
                 instance = new Datamart();
             }
+            instance.username = Datamart.currentUsername;
         }
         return instance;
     }
@@ -49,7 +57,7 @@ public class Datamart extends Observable implements Serializable {
         ObjectOutputStream objectOut = null;
         try {
 
-            FileOutputStream fileOut = ClassNoteApp.getApplication().getApplicationContext().openFileOutput(SAVE_FILE_NAME, Activity.MODE_PRIVATE);
+            FileOutputStream fileOut = ClassNoteApp.getApplication().getApplicationContext().openFileOutput(SAVE_FILE_PREFIX+this.username, Activity.MODE_PRIVATE);
 
             objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(this);
@@ -71,7 +79,7 @@ public class Datamart extends Observable implements Serializable {
         Object object = null;
         try {
             ClassNoteApp application = ClassNoteApp.getApplication();
-            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_NAME);
+            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_PREFIX+Datamart.current_username);
             objectIn = new ObjectInputStream(fileIn);
             object = objectIn.readObject();
 

@@ -25,6 +25,7 @@ public class TSquareAPI {
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
                 if (statusCode == 201) {
                     if (handler != null) handler.onSuccess();
+                    Datamart.setCurrentUsername(username);
                 } else {
                     if (handler != null) handler.onFailure();
                 }
