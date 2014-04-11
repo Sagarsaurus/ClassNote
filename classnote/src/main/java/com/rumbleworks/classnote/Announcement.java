@@ -2,6 +2,7 @@ package com.rumbleworks.classnote;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * An Announcement is one of the T-Square, from-teacher notifications that are not actually assignments
@@ -88,6 +89,10 @@ public class Announcement implements Comparable<Announcement>, Serializable {
     @Override
     public int compareTo(Announcement announcement) {
         return dueDate.compareTo(announcement.dueDate);
+    }
+
+    public boolean equals(Object object) {
+        return object instanceof Announcement && ((Announcement)object).getId().equals(this.getId());
     }
 
     public String getId() {

@@ -79,7 +79,7 @@ public class Datamart extends Observable implements Serializable {
         Object object = null;
         try {
             ClassNoteApp application = ClassNoteApp.getApplication();
-            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_PREFIX+Datamart.current_username);
+            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_PREFIX+Datamart.currentUsername);
             objectIn = new ObjectInputStream(fileIn);
             object = objectIn.readObject();
 
