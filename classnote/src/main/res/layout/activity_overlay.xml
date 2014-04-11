@@ -15,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingRight="25dp"
-        android:paddingLeft="25dp" />
+        android:paddingLeft="25dp"
+        android:textColor="@color/White"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
         android:layout_below="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1" />
+        android:layout_alignLeft="@+id/textView1"
+        android:textColor="@color/White" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +43,8 @@
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2" />
+        android:layout_alignLeft="@+id/textView2"
+        android:textColor="@color/White" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +57,8 @@
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
         android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3" />
+        android:layout_alignLeft="@+id/textView3"
+        android:textColor="@color/White" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,7 +71,8 @@
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
         android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4" />
+        android:layout_alignLeft="@+id/textView4"
+        android:textColor="@color/White" />
 
 
 </RelativeLayout>

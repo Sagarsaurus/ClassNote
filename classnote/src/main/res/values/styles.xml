@@ -18,7 +18,11 @@
     <!-- Application theme. -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/NavyActionBar</item>
+    </style>
+
+    <style name="NavyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/GTNavy</item>
     </style>
 
     <style name="LoginFormContainer">
@@ -30,7 +34,7 @@
 
     <style name="Theme.Transparent" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@color/TransparentPink</item>
+        <item name="android:windowBackground">@color/Overlay</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
