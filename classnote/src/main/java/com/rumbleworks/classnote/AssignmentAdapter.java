@@ -20,7 +20,7 @@ public class AssignmentAdapter extends BaseAdapter {
     public AssignmentAdapter(List<Assignment> list, Activity activity) {
         this.setList(list);
         this.activity = activity;
-        dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        dateFormat = new SimpleDateFormat("MMMM d h:mm a");
     }
 
     public void setList(List<Assignment> list) {
@@ -53,8 +53,10 @@ public class AssignmentAdapter extends BaseAdapter {
         }
 
         Assignment assignment = (Assignment) getItem(i);
+        TextView courseTitleText = (TextView) view.findViewById(R.id.courseTitle);
         TextView titleText = (TextView) view.findViewById(R.id.assignmentTitle);
         TextView dueDateText = (TextView) view.findViewById(R.id.assignmentDueDate);
+        courseTitleText.setText(assignment.getCourse().getTitle());
         titleText.setText(assignment.getName());
         dueDateText.setText(dateFormat.format(assignment.getDueDate()));
         return view;

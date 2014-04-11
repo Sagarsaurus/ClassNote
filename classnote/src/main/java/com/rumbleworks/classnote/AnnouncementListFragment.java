@@ -43,7 +43,7 @@ public class AnnouncementListFragment extends ListFragment implements Observer {
         AnnouncementAdapter adapter = (AnnouncementAdapter)getListAdapter();
         Announcement a = (Announcement)adapter.getItem(position);
         Intent i = new Intent(this.getActivity(), AnnouncementDetailActivity.class);
-        i.putExtra("COURSE_NAME", a.getCourseName());
+        i.putExtra("COURSE_NAME", a.getCourse().getTitle());
         i.putExtra("DESCRIPTION", a.getDescription());
         i.putExtra("DUE_DATE", a.getDueDate().toString());
         startActivity(i);

@@ -56,8 +56,7 @@ public class TSquareAPI {
                                     ann.getJSONObject(i).getString("title"),
                                     (stripHtml(ann.getJSONObject(i).getString("body"))),
                                     false,
-                                    new Date(ann.getJSONObject(i).getLong("createdOn")),
-                                    ann.getJSONObject(i).getString("siteTitle"));
+                                    new Date(ann.getJSONObject(i).getLong("createdOn")));
                             if (!course.hasAnnouncement(announcement)) {
                                 course.addAnnouncement(announcement);
                             }

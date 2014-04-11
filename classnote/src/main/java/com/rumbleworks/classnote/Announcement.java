@@ -16,7 +16,7 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 	public String description;
 	public Boolean isRead;
 	public Date dueDate;
-	public String courseName;
+	public Course course;
     public String id;
 
 //    //Temporary description-only constructor
@@ -24,13 +24,12 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 //        this("Nil", description, false, new Date(), " ");
 //    }
 
-	public Announcement(String id, String name, String description, Boolean isRead, Date dueDate, String courseName) {
+	public Announcement(String id, String name, String description, Boolean isRead, Date dueDate) {
         this.id = id;
 		this.name = name;
 		this.description = description;
 		this.isRead = isRead;
 		this.dueDate = dueDate;
-		this.courseName = courseName;
 	}
 	
 	public String getName() {
@@ -56,9 +55,9 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 	}
 	
 	
-	public String getCourseName() {
+	public Course getCourse() {
 		// TODO Auto-generated method stub
-		return courseName;
+		return course;
 	}
 
 	
@@ -82,8 +81,8 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 	}
 
 	
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
     @Override

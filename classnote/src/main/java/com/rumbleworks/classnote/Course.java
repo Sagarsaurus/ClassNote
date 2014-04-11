@@ -56,10 +56,12 @@ public class Course implements Serializable {
                 if (a.getId().equals(assignment.getId())) return;
             }
         }
+        assignment.setCourse(this);
         assignmentList.add(assignment);
     }
 
     public void addAnnouncement(Announcement announcement) {
+        announcement.setCourse(this);
         announcementList.add(announcement);
     }
 
