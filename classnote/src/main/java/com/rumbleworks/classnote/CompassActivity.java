@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
+import java.util.Date;
+
 
 //CompassActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
 
@@ -38,8 +40,24 @@ public class CompassActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        if (!Datamart.isLoggedIn()) {
+            finish();
+            Intent intent = new Intent();
+            intent.setClass(CompassActivity.this, UpdateActivity.class);
 
-        TSquareAPI.refreshAll();
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Date now = new Date();
+        Date lastRefreshed = Datamart.getInstance().getLastRefreshed();
+        if (!Datamart.getInstance().isOffline() && (lastRefreshed == null || lastRefreshed.before(new Date(now.getTime()-1000*60*15)))) { // if more than 15 mins ago
+            TSquareAPI.refreshAll();
+        }
     }
 
     @Override
@@ -114,7 +132,8 @@ public class CompassActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
-            TSquareAPI.refreshAll();
+//            TSquareAPI.refreshAll();
+            TSquareAPI.showLoginToRefresh();
             return true;
         }
         if (id == R.id.action_help) {

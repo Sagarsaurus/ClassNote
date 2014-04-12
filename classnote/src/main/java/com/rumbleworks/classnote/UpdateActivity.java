@@ -29,7 +29,6 @@ public class UpdateActivity extends Activity {
             public void onSuccess() {
 
                 Intent intent = new Intent();
-                intent.putExtra("username", username);
                 intent.setClass(UpdateActivity.this, CompassActivity.class);
 
                 startActivity(intent);

@@ -11,18 +11,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <!-- <activity -->
-        <!-- android:name="com.rumbleworks.classnote.UpdateActivity" -->
-        <!-- android:label="@string/app_name" > -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <activity
             android:name="com.rumbleworks.classnote.UpdateActivity"
+            android:label="ClassNote" >
+        </activity>
+        <activity
+            android:name="com.rumbleworks.classnote.CompassActivity"
             android:label="ClassNote" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,25 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity android:name=".InstructionActivity" /> -->
-        <!-- <activity android:name=".NavigationActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <!-- <activity android:name=".MainNavActivity" /> -->
-        <!-- <activity android:name=".NavigationActivity" /> -->
         <activity
-            android:name="com.rumbleworks.classnote.CompassActivity"
-            android:label="Navigation Menu" >
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            android:name="com.rumbleworks.classnote.LoginToRefreshActivity"
+            android:label="ClassNote"
+            android:theme="@style/Theme.Transparent" >
         </activity>
         <activity
             android:name="com.rumbleworks.classnote.OverlayActivity"

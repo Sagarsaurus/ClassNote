@@ -19,15 +19,17 @@ import java.util.Observable;
 
 public class Datamart extends Observable implements Serializable {
 
-    static String SAVE_FILE_PREFIX = "datamart-";
+    static String SAVE_FILE_NAME = "datamart-classnote";
 
     static Datamart instance;
 
 	private ArrayList<Course> courseList;
 
-    private static String currentUsername;
+    private Date lastRefreshed;
 
     private String username;
+
+    private boolean offline;
 
     private boolean[] visited = { false, false, false, false, false, true, true };
     private int currentScreen = 0;
@@ -36,19 +38,23 @@ public class Datamart extends Observable implements Serializable {
         courseList = new ArrayList<Course>();
     }
 
-    public static void setCurrentUsername(String currentUsername) {
-        Datamart.currentUsername = currentUsername;
+    public static boolean isLoggedIn() {
+        return getInstance().getUsername() != null;
     }
 
     public static Datamart getInstance() {
-        if (instance == null || instance.username == null || !instance.username.equals(Datamart.currentUsername)) {
+        if (instance == null) {
             instance = load();
             if (instance == null || !(instance instanceof Datamart)) {
                 instance = new Datamart();
             }
-            instance.username = Datamart.currentUsername;
         }
         return instance;
+    }
+
+    public static void clearInstance() {
+        ClassNoteApp.getApplication().deleteFile(SAVE_FILE_NAME);
+        instance = null;
     }
 
     public void save() {
@@ -57,7 +63,7 @@ public class Datamart extends Observable implements Serializable {
         ObjectOutputStream objectOut = null;
         try {
 
-            FileOutputStream fileOut = ClassNoteApp.getApplication().getApplicationContext().openFileOutput(SAVE_FILE_PREFIX+this.username, Activity.MODE_PRIVATE);
+            FileOutputStream fileOut = ClassNoteApp.getApplication().getApplicationContext().openFileOutput(SAVE_FILE_NAME, Activity.MODE_PRIVATE);
 
             objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(this);
@@ -79,7 +85,7 @@ public class Datamart extends Observable implements Serializable {
         Object object = null;
         try {
             ClassNoteApp application = ClassNoteApp.getApplication();
-            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_PREFIX+Datamart.currentUsername);
+            FileInputStream fileIn = application.getApplicationContext().openFileInput(SAVE_FILE_NAME);
             objectIn = new ObjectInputStream(fileIn);
             object = objectIn.readObject();
 
@@ -101,6 +107,14 @@ public class Datamart extends Observable implements Serializable {
 
         return (Datamart)object;
 
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public List<String> getCourseTitles() {
@@ -191,4 +205,19 @@ public class Datamart extends Observable implements Serializable {
         this.currentScreen = currentScreen;
     }
 
+    public boolean isOffline() {
+        return offline;
+    }
+
+    public void setOffline(boolean offline) {
+        this.offline = offline;
+    }
+
+    public Date getLastRefreshed() {
+        return lastRefreshed;
+    }
+
+    public void setLastRefreshed(Date lastRefreshed) {
+        this.lastRefreshed = lastRefreshed;
+    }
 }
