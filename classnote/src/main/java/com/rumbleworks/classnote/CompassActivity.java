@@ -50,36 +50,32 @@ public class CompassActivity extends ActionBarActivity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new UpdateFragment();
+                fragment = new AnnouncementListFragment();
                 mTitle = getString(R.string.title_section0);
                 break;
             case 1:
-                fragment = new AnnouncementListFragment();
+                fragment = new AssignmentListFragment();
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
-                fragment = new AssignmentListFragment();
-                mTitle = getString(R.string.title_section2);
+                fragment = new PastAssignmentListFragment();
+                mTitle = "Past Assignments";
                 break;
             case 3:
-                fragment = new PastAssignmentListFragment();
-                mTitle = getString(R.string.title_section3);
+                fragment = new AssignmentCalendarFragment();
+                mTitle = getString(R.string.title_section2);
                 break;
             case 4:
-                fragment = new AssignmentCalendarFragment();
-                mTitle = getString(R.string.title_section4);
+                fragment = new GradebookFragment();
+                mTitle = getString(R.string.title_section3);
                 break;
             case 5:
-                fragment = new GradebookFragment();
-                mTitle = getString(R.string.title_section5);
+                fragment = new AddAssignmentFragment();
+                mTitle = getString(R.string.title_section4);
                 break;
             case 6:
-                fragment = new AddAssignmentFragment();
-                mTitle = getString(R.string.title_section6);
-                break;
-            case 7:
                 fragment = new SettingsFragment();
-                mTitle = getString(R.string.title_section7);
+                mTitle = getString(R.string.title_section5);
                 break;
         }
         if (fragment == null) return;

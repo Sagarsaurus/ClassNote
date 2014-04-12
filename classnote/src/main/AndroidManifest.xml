@@ -21,6 +21,15 @@
         <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
+        <activity
+            android:name="com.rumbleworks.classnote.UpdateActivity"
+            android:label="ClassNote" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- <activity android:name=".InstructionActivity" /> -->
         <!-- <activity android:name=".NavigationActivity"> -->
         <!-- <intent-filter> -->
@@ -32,12 +41,7 @@
         <!-- <activity android:name=".NavigationActivity" /> -->
         <activity
             android:name="com.rumbleworks.classnote.CompassActivity"
-            android:label="ClassNote" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="Navigation Menu" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
