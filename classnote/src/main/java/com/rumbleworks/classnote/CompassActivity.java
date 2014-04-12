@@ -136,8 +136,7 @@ public class CompassActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
-//            TSquareAPI.refreshAll();
-            TSquareAPI.showLoginToRefresh();
+            TSquareAPI.refreshAll();
             return true;
         }
         if (id == R.id.action_help) {
