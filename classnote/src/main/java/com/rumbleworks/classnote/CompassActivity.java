@@ -40,6 +40,10 @@ public class CompassActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        this.requireLogin();
+    }
+
+    private void requireLogin() {
         if (!Datamart.isLoggedIn()) {
             finish();
             Intent intent = new Intent();
@@ -138,6 +142,11 @@ public class CompassActivity extends ActionBarActivity
         }
         if (id == R.id.action_help) {
             this.showHelp();
+            return true;
+        }
+        if (id == R.id.action_logout) {
+            Datamart.clearInstance();
+            this.requireLogin();
             return true;
         }
         return super.onOptionsItemSelected(item);
