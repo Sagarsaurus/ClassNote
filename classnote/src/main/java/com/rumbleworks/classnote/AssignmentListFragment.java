@@ -59,9 +59,7 @@ public class AssignmentListFragment extends ListFragment implements Observer {
         AssignmentAdapter adapter = (AssignmentAdapter)getListAdapter();
         Assignment a = (Assignment)adapter.getItem(position);
         Intent i = new Intent(this.getActivity(), AssignmentDetailActivity.class);
-        i.putExtra("COURSE_ID", a.getId());
-        i.putExtra("DESCRIPTION", a.getDescription());
-        i.putExtra("DUE_DATE", a.getDueDate());
+        i.putExtra("ASSIGNMENT", a);
         startActivity(i);
     }
 

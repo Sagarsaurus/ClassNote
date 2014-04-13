@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+
 
 public class AssignmentDetailActivity extends ActionBarActivity {
 
@@ -17,13 +19,14 @@ public class AssignmentDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_details);
         setTitle("Assignment");
-        Bundle b = getIntent().getExtras();
+        Assignment a = (Assignment) getIntent().getSerializableExtra("ASSIGNMENT");
         TextView courseName = (TextView)findViewById(R.id.assignment_details_class);
         TextView description = (TextView)findViewById(R.id.assignment_details_description);
         TextView dueDate = (TextView)findViewById(R.id.assignment_details_date);
-        courseName.setText("Course: " + b.getString("COURSE_ID"));
-        dueDate.setText("Posted: "+b.getString("DUE_DATE")+"\n");
-        description.setText("Message: \n\n"+b.getString("DESCRIPTION"));
+        courseName.setText("Course: " + a.getCourse().getTitle());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d h:mm a");
+        dueDate.setText("Posted: "+dateFormat.format(a.getDueDate())+"\n");
+        description.setText("Message: \n\n"+a.getDescription());
     }
 
 }
