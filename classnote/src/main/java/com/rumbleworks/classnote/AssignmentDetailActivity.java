@@ -21,12 +21,14 @@ public class AssignmentDetailActivity extends ActionBarActivity {
         setTitle("Assignment");
         Assignment a = (Assignment) getIntent().getSerializableExtra("ASSIGNMENT");
         TextView courseName = (TextView)findViewById(R.id.assignment_details_class);
+        TextView title = (TextView)findViewById(R.id.assignment_details_title);
         TextView description = (TextView)findViewById(R.id.assignment_details_description);
         TextView dueDate = (TextView)findViewById(R.id.assignment_details_date);
-        courseName.setText("Course: " + a.getCourse().getTitle());
+        courseName.setText(a.getCourse().getTitle());
+        title.setText(a.getName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d h:mm a");
-        dueDate.setText("Posted: "+dateFormat.format(a.getDueDate())+"\n");
-        description.setText("Message: \n\n"+a.getDescription());
+        dueDate.setText("Due: "+dateFormat.format(a.getDueDate())+"\n");
+        description.setText(a.getDescription());
     }
 
 }

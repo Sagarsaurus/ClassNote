@@ -54,6 +54,7 @@ public class TSquareAPI {
                             Announcement announcement = new Announcement(
                                     ann.getJSONObject(i).getString("id"),
                                     ann.getJSONObject(i).getString("title"),
+                                    ann.getJSONObject(i).getString("createdByDisplayName"),
                                     (stripHtml(ann.getJSONObject(i).getString("body"))),
                                     false,
                                     new Date(ann.getJSONObject(i).getLong("createdOn")));

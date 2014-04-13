@@ -13,20 +13,17 @@ import java.util.Objects;
 public class Announcement implements Comparable<Announcement>, Serializable {
 
 	public String name;
+    public String author;
 	public String description;
 	public Boolean isRead;
 	public Date dueDate;
 	public Course course;
     public String id;
 
-//    //Temporary description-only constructor
-//    //public Announcement(String description) {
-//        this("Nil", description, false, new Date(), " ");
-//    }
-
-	public Announcement(String id, String name, String description, Boolean isRead, Date dueDate) {
+	public Announcement(String id, String name, String author, String description, Boolean isRead, Date dueDate) {
         this.id = id;
 		this.name = name;
+        this.author = author;
 		this.description = description;
 		this.isRead = isRead;
 		this.dueDate = dueDate;
@@ -100,5 +97,13 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
