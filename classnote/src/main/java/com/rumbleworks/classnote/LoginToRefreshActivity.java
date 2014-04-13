@@ -1,5 +1,8 @@
 package com.rumbleworks.classnote;
 
+import android.accounts.Account;
+import android.accounts.AccountAuthenticatorActivity;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,7 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginToRefreshActivity extends Activity {
+import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
+
+public class LoginToRefreshActivity extends AccountAuthenticatorActivity {
     private EditText passwordField;
     private ProgressDialog progressDialog;
 
@@ -51,9 +56,25 @@ public class LoginToRefreshActivity extends Activity {
                 finish();
             }
         });
-        TSquareAPI.login(Datamart.getInstance().getUsername(), passwordField.getText().toString(), new AsyncResultHandler() {
+        final String username = Datamart.getInstance().getUsername();
+        final String password = passwordField.getText().toString();
+
+        TSquareAPI.login(username, password,  new AsyncResultHandler() {
             @Override
             public void onSuccess() {
+
+                String accountType = GatechAccountAuthenticator.ACCOUNT_TYPE;
+                AccountManager accMgr = AccountManager.get(LoginToRefreshActivity.this);
+                final Account account = new Account(username, accountType);
+                accMgr.setPassword(account,password);
+
+                final Intent intent = new Intent();
+                intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, username);
+                intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, accountType);
+                intent.putExtra(AccountManager.KEY_AUTHTOKEN, accountType);
+                LoginToRefreshActivity.this.setAccountAuthenticatorResult(intent.getExtras());
+                LoginToRefreshActivity.this.setResult(RESULT_OK, intent);
+
                 finish();
             }
 

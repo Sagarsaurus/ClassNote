@@ -1,11 +1,14 @@
 package com.rumbleworks.classnote;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.text.Html;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
 
 import org.apache.http.impl.client.BasicCookieStore;
 import org.json.JSONArray;
@@ -122,7 +125,7 @@ public class TSquareAPI {
                     JSONArray siteArray = siteObject.getJSONArray("site_collection");
 
                     if (siteArray.length() == 0) {
-                        showLoginToRefresh();
+                        tryReauth();
                         return;
                     }
 
@@ -155,6 +158,27 @@ public class TSquareAPI {
             }
 
         });
+    }
+
+    public static void tryReauth() {
+        try {
+            AccountManager accountManager = AccountManager.get(ClassNoteApp.getApplication().getApplicationContext());
+            Account account = new Account(Datamart.getInstance().getUsername(), GatechAccountAuthenticator.ACCOUNT_TYPE);
+            String password = accountManager.getPassword(account);
+            login(Datamart.getInstance().getUsername(), password, new AsyncResultHandler() {
+                @Override
+                public void onSuccess() {
+                    refreshAll();
+                }
+
+                @Override
+                public void onFailure() {
+                    showLoginToRefresh();
+                }
+            });
+        } catch (Exception e) {
+            showLoginToRefresh();
+        }
     }
 
     public static void showLoginToRefresh() {
