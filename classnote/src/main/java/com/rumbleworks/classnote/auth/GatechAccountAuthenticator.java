@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.rumbleworks.classnote.ui.LoginToRefreshActivity;
+import com.rumbleworks.classnote.ui.UpdatePasswordActivity;
 
 /**
  * Created by joshwilliams on 4/13/14.
@@ -36,7 +36,7 @@ public class GatechAccountAuthenticator extends AbstractAccountAuthenticator {
         final Bundle result;
         final Intent intent;
 
-        intent = new Intent(this.mContext, LoginToRefreshActivity.class);
+        intent = new Intent(this.mContext, UpdatePasswordActivity.class);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
 
         result = new Bundle();

@@ -10,7 +10,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.rumbleworks.classnote.ui.ClassNoteApp;
 import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
-import com.rumbleworks.classnote.ui.LoginToRefreshActivity;
+import com.rumbleworks.classnote.ui.UpdatePasswordActivity;
 
 import org.apache.http.impl.client.BasicCookieStore;
 import org.json.JSONArray;
@@ -176,16 +176,16 @@ public class TSquareAPI {
 
                 @Override
                 public void onFailure() {
-                    showLoginToRefresh();
+                    requirePasswordUpdateToRefresh();
                 }
             });
         } catch (Exception e) {
-            showLoginToRefresh();
+            requirePasswordUpdateToRefresh();
         }
     }
 
-    public static void showLoginToRefresh() {
-        Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), LoginToRefreshActivity.class);
+    public static void requirePasswordUpdateToRefresh() {
+        Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), UpdatePasswordActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         ClassNoteApp.getApplication().startActivity(intent);
     }

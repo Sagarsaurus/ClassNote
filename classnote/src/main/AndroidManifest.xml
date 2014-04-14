@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginToRefreshActivity"
+            android:name=".ui.UpdatePasswordActivity"
             android:label="ClassNote"
             android:theme="@style/Theme.Transparent" >
         </activity>
