@@ -1,78 +1,69 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="understood"
+<<<<<<< Updated upstream:classnote/src/main/res/layout/activity_help_overlay.xml
     tools:context="com.hellabreakfast.classnote.ui.HelpOverlayActivity">
+=======
+    android:orientation="vertical"
+    android:paddingTop="60dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context="com.hellabreakfast.classnote.ui.OverlayActivity">
+>>>>>>> Stashed changes:classnote/src/main/res/layout/activity_overlay.xml
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView1"
-        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
         android:textColor="@color/White"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView2"
-        android:layout_marginTop="35dp"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
-        android:layout_below="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1"
         android:textColor="@color/White" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView3"
-        android:layout_marginTop="35dp"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
         android:textColor="@color/White" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView4"
-        android:layout_marginTop="35dp"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
         android:textColor="@color/White" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView5"
-        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:paddingRight="25dp"
-        android:paddingLeft="25dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
         android:textColor="@color/White" />
 
 
-</RelativeLayout>
+</LinearLayout>
