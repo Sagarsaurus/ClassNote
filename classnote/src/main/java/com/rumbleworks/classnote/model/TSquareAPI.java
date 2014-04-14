@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.model;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -8,7 +8,9 @@ import android.text.Html;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rumbleworks.classnote.ui.ClassNoteApp;
 import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
+import com.rumbleworks.classnote.ui.LoginToRefreshActivity;
 
 import org.apache.http.impl.client.BasicCookieStore;
 import org.json.JSONArray;

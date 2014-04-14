@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.rumbleworks.classnote.model.Announcement;
+import com.rumbleworks.classnote.model.Datamart;
+import com.rumbleworks.classnote.R;
 
 import java.util.Observable;
 import java.util.Observer;

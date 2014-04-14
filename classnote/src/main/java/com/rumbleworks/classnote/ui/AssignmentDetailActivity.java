@@ -1,13 +1,11 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.rumbleworks.classnote.model.Assignment;
+import com.rumbleworks.classnote.R;
 
 import java.text.SimpleDateFormat;
 

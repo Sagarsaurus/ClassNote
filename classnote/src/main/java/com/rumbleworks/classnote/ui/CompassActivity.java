@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+
+import com.rumbleworks.classnote.model.Datamart;
+import com.rumbleworks.classnote.R;
+import com.rumbleworks.classnote.model.TSquareAPI;
 
 import java.util.Date;
 

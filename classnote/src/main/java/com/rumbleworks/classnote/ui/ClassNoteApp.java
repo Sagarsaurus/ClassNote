@@ -1,7 +1,6 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.app.Application;
-import android.content.Context;
 
 public class ClassNoteApp extends Application {
 

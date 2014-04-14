@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,17 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.rumbleworks.classnote.model.Assignment;
+import com.rumbleworks.classnote.model.Datamart;
+import com.rumbleworks.classnote.R;
+
 import java.util.Observable;
 import java.util.Observer;
 
-public class AssignmentListFragment extends ListFragment implements Observer {
+public class PastAssignmentListFragment extends ListFragment implements Observer {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "section_number";
 
-    public AssignmentListFragment() {
+    public PastAssignmentListFragment() {
 
     }
 
@@ -26,7 +30,7 @@ public class AssignmentListFragment extends ListFragment implements Observer {
     public void onResume() {
         super.onResume();
         AssignmentAdapter assignmentAdapter = (AssignmentAdapter)this.getListAdapter();
-        assignmentAdapter.setList(Datamart.getInstance().getUpcomingAssignments());
+        assignmentAdapter.setList(Datamart.getInstance().getPastAssignments());
         assignmentAdapter.notifyDataSetChanged();
     }
 
@@ -35,7 +39,7 @@ public class AssignmentListFragment extends ListFragment implements Observer {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_assignment_list, container, false);
 
-        this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
+        this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getPastAssignments(), this.getActivity()));
 
         return rootView;
     }
@@ -51,9 +55,8 @@ public class AssignmentListFragment extends ListFragment implements Observer {
     }
 
     public void update(Observable observable, Object data) {
-        this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
+        this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getPastAssignments(), this.getActivity()));
     }
-
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         AssignmentAdapter adapter = (AssignmentAdapter)getListAdapter();
@@ -62,5 +65,6 @@ public class AssignmentListFragment extends ListFragment implements Observer {
         i.putExtra("ASSIGNMENT", a);
         startActivity(i);
     }
+
 
 }

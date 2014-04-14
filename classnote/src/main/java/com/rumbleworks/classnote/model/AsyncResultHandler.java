@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.model;
 
 public interface AsyncResultHandler {
 

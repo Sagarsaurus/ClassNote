@@ -1,19 +1,18 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rumbleworks.classnote.model.AsyncResultHandler;
+import com.rumbleworks.classnote.R;
+import com.rumbleworks.classnote.model.TSquareAPI;
 import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
-
-import org.json.JSONObject;
 
 public class UpdateActivity extends AccountAuthenticatorActivity {
 

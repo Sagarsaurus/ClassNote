@@ -1,8 +1,8 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.model;
 
 import android.app.Activity;
 
-import org.json.JSONObject;
+import com.rumbleworks.classnote.ui.ClassNoteApp;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

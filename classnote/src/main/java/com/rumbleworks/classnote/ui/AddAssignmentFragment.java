@@ -1,6 +1,5 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +11,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+
+import com.rumbleworks.classnote.model.Assignment;
+import com.rumbleworks.classnote.model.Course;
+import com.rumbleworks.classnote.model.Datamart;
+import com.rumbleworks.classnote.R;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

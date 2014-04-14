@@ -1,8 +1,7 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * An Announcement is one of the T-Square, from-teacher notifications that are not actually assignments

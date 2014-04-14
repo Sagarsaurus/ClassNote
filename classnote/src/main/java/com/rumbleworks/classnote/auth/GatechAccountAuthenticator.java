@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.rumbleworks.classnote.LoginToRefreshActivity;
+import com.rumbleworks.classnote.ui.LoginToRefreshActivity;
 
 /**
  * Created by joshwilliams on 4/13/14.

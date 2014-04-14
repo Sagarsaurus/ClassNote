@@ -1,19 +1,21 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rumbleworks.classnote.model.AsyncResultHandler;
+import com.rumbleworks.classnote.model.Datamart;
+import com.rumbleworks.classnote.R;
+import com.rumbleworks.classnote.model.TSquareAPI;
 import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
 
 public class LoginToRefreshActivity extends AccountAuthenticatorActivity {
@@ -59,14 +61,14 @@ public class LoginToRefreshActivity extends AccountAuthenticatorActivity {
         final String username = Datamart.getInstance().getUsername();
         final String password = passwordField.getText().toString();
 
-        TSquareAPI.login(username, password,  new AsyncResultHandler() {
+        TSquareAPI.login(username, password, new AsyncResultHandler() {
             @Override
             public void onSuccess() {
 
                 String accountType = GatechAccountAuthenticator.ACCOUNT_TYPE;
                 AccountManager accMgr = AccountManager.get(LoginToRefreshActivity.this);
                 final Account account = new Account(username, accountType);
-                accMgr.setPassword(account,password);
+                accMgr.setPassword(account, password);
 
                 final Intent intent = new Intent();
                 intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, username);

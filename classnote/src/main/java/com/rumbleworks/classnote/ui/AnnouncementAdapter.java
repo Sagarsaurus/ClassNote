@@ -1,4 +1,4 @@
-package com.rumbleworks.classnote;
+package com.rumbleworks.classnote.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.rumbleworks.classnote.model.Announcement;
+import com.rumbleworks.classnote.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
