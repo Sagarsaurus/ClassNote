@@ -15,14 +15,14 @@ import com.hellabreakfast.classnote.R;
 import java.util.Observable;
 import java.util.Observer;
 
-public class AssignmentListFragment extends ListFragment implements Observer {
+public class CurrentAssignmentListFragment extends ListFragment implements Observer {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "section_number";
 
-    public AssignmentListFragment() {
+    public CurrentAssignmentListFragment() {
 
     }
 

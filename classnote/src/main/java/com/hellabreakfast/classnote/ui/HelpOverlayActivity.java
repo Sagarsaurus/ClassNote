@@ -9,7 +9,7 @@ import com.hellabreakfast.classnote.model.Datamart;
 import com.hellabreakfast.classnote.R;
 
 
-public class OverlayActivity extends ActionBarActivity {
+public class HelpOverlayActivity extends ActionBarActivity {
 
     private String[][] helpArray = {    { "Tap the top left of the screen or swipe from the left to open the menu for the application", "All announcements are present on this page and are sorted from most to least recent", "", "", "Tap anywhere to dismiss instructions" },
                                         { "Open the menu to add new assignments", "Tap on an assignment to view in more detail", "", "", "Tap anywhere to dismiss instructions"},

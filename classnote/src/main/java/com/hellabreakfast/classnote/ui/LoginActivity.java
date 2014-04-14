@@ -14,7 +14,7 @@ import com.hellabreakfast.classnote.R;
 import com.hellabreakfast.classnote.model.TSquareAPI;
 import com.hellabreakfast.classnote.auth.GatechAccountAuthenticator;
 
-public class UpdateActivity extends AccountAuthenticatorActivity {
+public class LoginActivity extends AccountAuthenticatorActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class UpdateActivity extends AccountAuthenticatorActivity {
             public void onSuccess() {
 
                 String accountType = GatechAccountAuthenticator.ACCOUNT_TYPE;
-                AccountManager accMgr = AccountManager.get(UpdateActivity.this);
+                AccountManager accMgr = AccountManager.get(LoginActivity.this);
                 final Account account = new Account(username, accountType);
                 accMgr.addAccountExplicitly(account, password, null);
 
@@ -45,12 +45,12 @@ public class UpdateActivity extends AccountAuthenticatorActivity {
                 intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, username);
                 intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, accountType);
                 intent.putExtra(AccountManager.KEY_AUTHTOKEN, accountType);
-                UpdateActivity.this.setAccountAuthenticatorResult(intent.getExtras());
-                UpdateActivity.this.setResult(RESULT_OK, intent);
+                LoginActivity.this.setAccountAuthenticatorResult(intent.getExtras());
+                LoginActivity.this.setResult(RESULT_OK, intent);
 
 
                 Intent mainIntent = new Intent();
-                mainIntent.setClass(UpdateActivity.this, CompassActivity.class);
+                mainIntent.setClass(LoginActivity.this, MainActivity.class);
 
                 startActivity(mainIntent);
                 finish();
@@ -58,10 +58,10 @@ public class UpdateActivity extends AccountAuthenticatorActivity {
 
             @Override
             public void onFailure() {
-                UpdateActivity.this.runOnUiThread(new Runnable() {
+                LoginActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast toast = Toast.makeText(UpdateActivity.this, "Invalid Username or Password", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });

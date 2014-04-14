@@ -17,9 +17,9 @@ import com.hellabreakfast.classnote.model.TSquareAPI;
 import java.util.Date;
 
 
-//CompassActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
+//MainActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
 
-public class CompassActivity extends ActionBarActivity
+public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -51,7 +51,7 @@ public class CompassActivity extends ActionBarActivity
         if (!Datamart.isLoggedIn()) {
             finish();
             Intent intent = new Intent();
-            intent.setClass(CompassActivity.this, UpdateActivity.class);
+            intent.setClass(MainActivity.this, LoginActivity.class);
 
             startActivity(intent);
             finish();
@@ -80,7 +80,7 @@ public class CompassActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section0);
                 break;
             case 1:
-                fragment = new AssignmentListFragment();
+                fragment = new CurrentAssignmentListFragment();
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
@@ -158,7 +158,7 @@ public class CompassActivity extends ActionBarActivity
     public void showHelp() {
         Datamart.getInstance().setVisited(Datamart.getInstance().getCurrentScreen(), true);
         Intent intent = new Intent();
-        intent.setClass(this, OverlayActivity.class);
+        intent.setClass(this, HelpOverlayActivity.class);
         intent.putExtra("title", getSupportActionBar().getTitle());
         startActivity(intent);
     }

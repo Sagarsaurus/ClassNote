@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="understood"
-    tools:context="com.hellabreakfast.classnote.ui.OverlayActivity">
+    tools:context="com.hellabreakfast.classnote.ui.HelpOverlayActivity">
 
     <TextView
         android:layout_width="wrap_content"
