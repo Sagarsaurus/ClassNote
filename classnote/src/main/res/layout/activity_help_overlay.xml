@@ -3,16 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="understood"
-<<<<<<< Updated upstream:classnote/src/main/res/layout/activity_help_overlay.xml
-    tools:context="com.hellabreakfast.classnote.ui.HelpOverlayActivity">
-=======
     android:orientation="vertical"
     android:paddingTop="60dp"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="com.hellabreakfast.classnote.ui.OverlayActivity">
->>>>>>> Stashed changes:classnote/src/main/res/layout/activity_overlay.xml
+    tools:context="com.hellabreakfast.classnote.ui.HelpOverlayActivity">
 
     <TextView
         android:layout_width="fill_parent"
@@ -64,6 +60,5 @@
         android:id="@+id/textView5"
         android:gravity="center"
         android:textColor="@color/White" />
-
 
 </LinearLayout>
