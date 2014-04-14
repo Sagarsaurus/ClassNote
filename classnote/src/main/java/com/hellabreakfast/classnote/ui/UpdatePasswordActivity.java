@@ -25,7 +25,7 @@ public class UpdatePasswordActivity extends AccountAuthenticatorActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login_to_refresh);
+		setContentView(R.layout.activity_update_password);
         passwordField = new EditText(this);
         passwordField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         passwordField.setHint("Password");

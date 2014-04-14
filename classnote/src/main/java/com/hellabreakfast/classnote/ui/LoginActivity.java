@@ -19,7 +19,7 @@ public class LoginActivity extends AccountAuthenticatorActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_update);
+		setContentView(R.layout.activity_login);
     }
 
 	public void login( View view ) {

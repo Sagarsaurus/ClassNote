@@ -26,7 +26,7 @@ public class HelpOverlayActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_overlay);
+        setContentView(R.layout.activity_help_overlay);
 
         String title = getIntent().getStringExtra("title");
         if (title != null) setTitle(title);
