@@ -1,10 +1,14 @@
 package com.rumbleworks.classnote;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Intent;
 import android.text.Html;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rumbleworks.classnote.auth.GatechAccountAuthenticator;
 
 import org.apache.http.impl.client.BasicCookieStore;
 import org.json.JSONArray;
@@ -25,7 +29,8 @@ public class TSquareAPI {
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, byte[] responseBody) {
                 if (statusCode == 201) {
                     if (handler != null) handler.onSuccess();
-                    Datamart.setCurrentUsername(username);
+                    Datamart.getInstance().setUsername(username);
+                    Datamart.getInstance().setOffline(false);
                 } else {
                     if (handler != null) handler.onFailure();
                 }
@@ -120,6 +125,11 @@ public class TSquareAPI {
                     JSONObject siteObject = new JSONObject(new String(responseBody));
                     JSONArray siteArray = siteObject.getJSONArray("site_collection");
 
+                    if (siteArray.length() == 0) {
+                        tryReauth();
+                        return;
+                    }
+
                     //Need to trim the message to remove tags
                     for (int i = 0; i < siteArray.length(); i++) {
                         JSONObject site = siteArray.optJSONObject(i);
@@ -137,20 +147,45 @@ public class TSquareAPI {
                         Course c = new Course(site.optString("title"), site.optString("entityId"));
                         Datamart.getInstance().addCourse(c);
                     }
+                    Datamart.getInstance().setLastRefreshed(new Date());
                     Datamart.getInstance().save();
+
+                    TSquareAPI.refreshAnnouncements();
+                    TSquareAPI.refreshAssignments();
                 }
-                catch (Exception e) {
+                catch (JSONException e) {
 
                 }
-            }
-
-            @Override
-            public void onFinish() {
-                TSquareAPI.refreshAnnouncements();
-                TSquareAPI.refreshAssignments();
             }
 
         });
+    }
+
+    public static void tryReauth() {
+        try {
+            AccountManager accountManager = AccountManager.get(ClassNoteApp.getApplication().getApplicationContext());
+            Account account = new Account(Datamart.getInstance().getUsername(), GatechAccountAuthenticator.ACCOUNT_TYPE);
+            String password = accountManager.getPassword(account);
+            login(Datamart.getInstance().getUsername(), password, new AsyncResultHandler() {
+                @Override
+                public void onSuccess() {
+                    refreshAll();
+                }
+
+                @Override
+                public void onFailure() {
+                    showLoginToRefresh();
+                }
+            });
+        } catch (Exception e) {
+            showLoginToRefresh();
+        }
+    }
+
+    public static void showLoginToRefresh() {
+        Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), LoginToRefreshActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        ClassNoteApp.getApplication().startActivity(intent);
     }
 
     /**

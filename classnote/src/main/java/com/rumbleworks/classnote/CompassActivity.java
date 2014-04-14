@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
+import java.util.Date;
+
 
 //CompassActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
 
@@ -38,8 +40,28 @@ public class CompassActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        this.requireLogin();
+    }
 
-        TSquareAPI.refreshAll();
+    private void requireLogin() {
+        if (!Datamart.isLoggedIn()) {
+            finish();
+            Intent intent = new Intent();
+            intent.setClass(CompassActivity.this, UpdateActivity.class);
+
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Date now = new Date();
+        Date lastRefreshed = Datamart.getInstance().getLastRefreshed();
+        if (!Datamart.getInstance().isOffline() && (lastRefreshed == null || lastRefreshed.before(new Date(now.getTime()-1000*60*15)))) { // if more than 15 mins ago
+            TSquareAPI.refreshAll();
+        }
     }
 
     @Override
@@ -50,36 +72,32 @@ public class CompassActivity extends ActionBarActivity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new UpdateFragment();
+                fragment = new AnnouncementListFragment();
                 mTitle = getString(R.string.title_section0);
                 break;
             case 1:
-                fragment = new AnnouncementListFragment();
+                fragment = new AssignmentListFragment();
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
-                fragment = new AssignmentListFragment();
-                mTitle = getString(R.string.title_section2);
+                fragment = new PastAssignmentListFragment();
+                mTitle = "Past Assignments";
                 break;
             case 3:
-                fragment = new PastAssignmentListFragment();
-                mTitle = getString(R.string.title_section3);
+                fragment = new AssignmentCalendarFragment();
+                mTitle = getString(R.string.title_section2);
                 break;
             case 4:
-                fragment = new AssignmentCalendarFragment();
-                mTitle = getString(R.string.title_section4);
+                fragment = new GradebookFragment();
+                mTitle = getString(R.string.title_section3);
                 break;
             case 5:
-                fragment = new GradebookFragment();
-                mTitle = getString(R.string.title_section5);
+                fragment = new AddAssignmentFragment();
+                mTitle = getString(R.string.title_section4);
                 break;
             case 6:
-                fragment = new AddAssignmentFragment();
-                mTitle = getString(R.string.title_section6);
-                break;
-            case 7:
                 fragment = new SettingsFragment();
-                mTitle = getString(R.string.title_section7);
+                mTitle = getString(R.string.title_section5);
                 break;
         }
         if (fragment == null) return;
@@ -123,6 +141,11 @@ public class CompassActivity extends ActionBarActivity
         }
         if (id == R.id.action_help) {
             this.showHelp();
+            return true;
+        }
+        if (id == R.id.action_logout) {
+            Datamart.clearInstance();
+            this.requireLogin();
             return true;
         }
         return super.onOptionsItemSelected(item);
