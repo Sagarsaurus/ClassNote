@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
@@ -48,14 +49,14 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void requireLogin() {
-        if (!Datamart.isLoggedIn()) {
-            finish();
-            Intent intent = new Intent();
-            intent.setClass(MainActivity.this, LoginActivity.class);
-
-            startActivity(intent);
-            finish();
-        }
+//        if (!Datamart.isLoggedIn()) {
+//            finish();
+//            Intent intent = new Intent();
+//            intent.setClass(MainActivity.this, LoginActivity.class);
+//
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     @Override
@@ -76,32 +77,36 @@ public class MainActivity extends ActionBarActivity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new AnnouncementListFragment();
+                fragment = new LoginFragment();
                 mTitle = getString(R.string.title_section0);
                 break;
             case 1:
-                fragment = new CurrentAssignmentListFragment();
+                fragment = new AnnouncementListFragment();
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
-                fragment = new PastAssignmentListFragment();
-                mTitle = "Past Assignments";
-                break;
-            case 3:
-                fragment = new AssignmentCalendarFragment();
+                fragment = new CurrentAssignmentListFragment();
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 4:
-                fragment = new GradebookFragment();
+            case 3:
+                fragment = new PastAssignmentListFragment();
                 mTitle = getString(R.string.title_section3);
                 break;
-            case 5:
-                fragment = new AddAssignmentFragment();
+            case 4:
+                fragment = new AssignmentCalendarFragment();
                 mTitle = getString(R.string.title_section4);
                 break;
-            case 6:
-                fragment = new SettingsFragment();
+            case 5:
+                fragment = new GradebookFragment();
                 mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                fragment = new AddAssignmentFragment();
+                mTitle = getString(R.string.title_section6);
+                break;
+            case 7:
+                fragment = new SettingsFragment();
+                mTitle = getString(R.string.title_section7);
                 break;
         }
         if (fragment == null) return;
@@ -149,7 +154,14 @@ public class MainActivity extends ActionBarActivity
         }
         if (id == R.id.action_logout) {
             Datamart.clearInstance();
-            this.requireLogin();
+            //this.requireLogin();
+
+            Intent mainIntent = new Intent();
+            mainIntent.setClass(MainActivity.this, LoginActivity.class);
+
+            startActivity(mainIntent);
+            finish();
+
             return true;
         }
         return super.onOptionsItemSelected(item);

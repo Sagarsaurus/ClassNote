@@ -3,13 +3,14 @@
 
     <string name="app_name">ClassNote</string>
     <string name="action_settings">Settings</string>
-    <string name="title_section0">Announcements</string>
-    <string name="title_section1">Current Assignments</string>
-    <string name="title_section2">Calendar</string>
-    <string name="title_section3">Gradebook</string>
-    <string name="title_section4">New Assignment</string>
-    <string name="title_section5">Settings</string>
-    <string name="title_section6">Help</string>
+    <string name="title_section0">Log in to update</string>
+    <string name="title_section1">Announcements</string>
+    <string name="title_section2">Current Assignments</string>
+    <string name="title_section3">Past Assignments</string>
+    <string name="title_section4">Calendar</string>
+    <string name="title_section5">Gradebook</string>
+    <string name="title_section6">New Assignment</string>
+    <string name="title_section7">Settings</string>
     <string name="title_activity_update">UpdateActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="update">Update from T-Square</string>
