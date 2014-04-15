@@ -185,9 +185,9 @@ public class TSquareAPI {
     }
 
     public static void requirePasswordUpdateToRefresh() {
-//        Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), UpdatePasswordActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-//        ClassNoteApp.getApplication().startActivity(intent);
+        Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), UpdatePasswordActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        ClassNoteApp.getApplication().startActivity(intent);
     }
 
     /**

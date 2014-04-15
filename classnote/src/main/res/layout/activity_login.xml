@@ -42,13 +42,6 @@
             android:text="Login"
         	android:onClick="login" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Cached Data"
-            android:id="@+id/viewCached"
-            android:layout_gravity="center_horizontal" />
-
     </LinearLayout>
 
 </RelativeLayout>
