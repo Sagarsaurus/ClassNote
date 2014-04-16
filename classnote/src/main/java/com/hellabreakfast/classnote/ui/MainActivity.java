@@ -77,31 +77,19 @@ public class MainActivity extends ActionBarActivity
         switch (position) {
             case 0:
                 fragment = new AnnouncementListFragment();
-                mTitle = getString(R.string.title_section0);
+                mTitle = "Announcements";
                 break;
             case 1:
                 fragment = new CurrentAssignmentListFragment();
-                mTitle = getString(R.string.title_section1);
+                mTitle = "Current Assignments";
                 break;
             case 2:
                 fragment = new PastAssignmentListFragment();
                 mTitle = "Past Assignments";
                 break;
             case 3:
-                fragment = new AssignmentCalendarFragment();
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 4:
-                fragment = new GradebookFragment();
-                mTitle = getString(R.string.title_section3);
-                break;
-            case 5:
                 fragment = new AddAssignmentFragment();
-                mTitle = getString(R.string.title_section4);
-                break;
-            case 6:
-                fragment = new SettingsFragment();
-                mTitle = getString(R.string.title_section5);
+                mTitle = "New Assignment";
                 break;
         }
         if (fragment == null) return;
