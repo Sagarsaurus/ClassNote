@@ -13,5 +13,4 @@ public class ClassNoteApp extends Application {
     public static ClassNoteApp getApplication() {
         return instance;
     }
-
 }

@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
 import android.text.Html;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -101,7 +102,10 @@ public class TSquareAPI {
                                 long dueDateInt = dueDateObject.optLong("time");
                                 dueDate = dueDateInt > 0 ? new Date(dueDateInt) : null;
                             }
-                            Assignment assignment = new Assignment(assObject.optString("id"),assObject.optString("title"),assObject.optString("instructions"),false, dueDate);
+                            JSONObject content = assObject.optJSONObject("content");
+                            //Log.d("Content: ", content.toString());
+
+                            Assignment assignment = new Assignment(assObject.optString("id"),assObject.optString("title"),stripHtml(content.optString("instructions")),false, dueDate);
 
                             course.addAssignment(assignment);
                         }

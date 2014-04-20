@@ -9,35 +9,57 @@
     android:orientation="vertical"
     tools:context="com.hellabreakfast.classnote.ui.AssignmentDetailActivity">
 
-    <TextView
-        android:text="LCC-4811-JD2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/assignment_details_class"
-        android:layout_marginBottom="5dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
 
-    <TextView
-        android:text="Postmortem Report"
-        android:textSize="19dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/assignment_details_title"
-        android:layout_marginBottom="5dp" />
 
-    <TextView
-        android:text="Due: May 2 11:55 pm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/assignment_details_date"
-        android:layout_marginBottom="5dp" />
 
-    <TextView
-        android:text="Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/assignment_details_description"
-        android:layout_marginBottom="5dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
+
+
+
+            <TextView
+                android:text="LCC-4811-JD2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/assignment_details_class"
+                android:layout_marginBottom="5dp"/>
+
+
+            <TextView
+                android:text="Postmortem Report"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/assignment_details_title"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:text="Due: May 2 11:55 pm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/assignment_details_date"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:text="Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/assignment_details_description"
+                android:layout_marginBottom="5dp" />
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
 
 </LinearLayout>
