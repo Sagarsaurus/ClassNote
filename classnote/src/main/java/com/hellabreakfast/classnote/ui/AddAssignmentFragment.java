@@ -1,10 +1,12 @@
 package com.hellabreakfast.classnote.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -57,6 +59,10 @@ public class AddAssignmentFragment extends Fragment {
                 Course c = Datamart.getInstance().getCourseByTitle((String)courseSpinner.getSelectedItem());
                 Assignment assignment = new Assignment(null, titleField.getText().toString(), descField.getText().toString(), true, date.getTime());
                 c.addAssignment(assignment);
+
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(descField.getWindowToken(), 0);
             }
         });
 

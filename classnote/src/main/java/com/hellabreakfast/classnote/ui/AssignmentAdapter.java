@@ -28,7 +28,7 @@ public class AssignmentAdapter extends BaseAdapter {
 
     public void setList(List<Assignment> list) {
         Collections.sort(list);
-        Collections.reverse(list);
+        //Collections.reverse(list);
         this.list = list;
     }
 
