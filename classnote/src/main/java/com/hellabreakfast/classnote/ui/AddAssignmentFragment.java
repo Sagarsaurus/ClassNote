@@ -63,6 +63,8 @@ public class AddAssignmentFragment extends Fragment {
                 InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(descField.getWindowToken(), 0);
+
+                ((MainActivity) getActivity() ).onNavigationDrawerItemSelected(1);
             }
         });
 
