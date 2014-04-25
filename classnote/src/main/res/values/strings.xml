@@ -6,4 +6,25 @@
     <string name="password">Password</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string-array name="help_items_announcements">
+        <item>Tap the top left of the screen or swipe from the left to open the menu for the application</item>
+        <item>All announcements are present on this page and are sorted from most to least recent</item>
+        <item></item>
+        <item></item>
+        <item>Tap anywhere to dismiss instructions</item>
+    </string-array>
+    <string-array name="help_items_assignments">
+        <item>Open the navigation drawer to add new assignments</item>
+        <item>Tap on an assignment to view in more detail</item>
+        <item></item>
+        <item></item>
+        <item>Tap anywhere to dismiss instructions</item>
+    </string-array>
+    <string-array name="help_items_add_assignment">
+        <item>Tap a day to create a new assignment due on that date</item>
+        <item>Slide up or down to go from one month to another</item>
+        <item></item>
+        <item></item>
+        <item>Tap anywhere to dismiss instructions</item>
+    </string-array>
 </resources>
