@@ -29,25 +29,21 @@ public class GradedWork implements Serializable {
 
 
 	public String getName() {
-		// TODO Auto-generated method stub
         return name;
 	}
 
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return description;
 	}
 
 
 	public Boolean getIsRead() {
-		// TODO Auto-generated method stub
 		return isRead;
 	}
 
 
 	public Date getDueDate() {
-		// TODO Auto-generated method stub
 		return dueDate;
 	}
 
@@ -83,22 +79,18 @@ public class GradedWork implements Serializable {
 
 
 	public double getPointsEarned() {
-		// TODO Auto-generated method stub
 		return pointsEarned;
 	}
 
 	public double getPointsPossible() {
-		// TODO Auto-generated method stub
 		return pointsPossible;
 	}
 
 	public double getOverallScore() {
-		// TODO Auto-generated method stub
 		return overallScore;
 	}
 
 	public double getPercentageOfFinal() {
-		// TODO Auto-generated method stub
 		return percentageOfFinal;
 	}
 

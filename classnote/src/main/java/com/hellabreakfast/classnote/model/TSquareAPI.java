@@ -230,9 +230,3 @@ public class TSquareAPI {
     }
 
 }
-
-
-//https://t-square.gatech.edu/direct/site/gtc-0bb4-a1ee-5d18-a027-8c20b42c1703/.json
-//gets a json format of all classes i have ever been in
-
-//https://t-square.gatech.edu/portal/tool/3f4094d2-857f-4585-8e1d-b153a8690724?itemReference=/announcement/msg/gtc-cb8b-5158-5600-8483-86ad218d680a/main/

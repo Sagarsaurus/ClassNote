@@ -7,7 +7,6 @@ import java.util.Date;
  * An assignment is a normal, t-square assignment that will be shown in the assignments list
  * and be able to be added to the final grade of the course
  */
-
 public class Assignment extends GradedWork implements Comparable<Assignment>, Serializable {
     private String id;
 

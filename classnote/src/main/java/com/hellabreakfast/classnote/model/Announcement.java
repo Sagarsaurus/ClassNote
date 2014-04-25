@@ -8,7 +8,6 @@ import java.util.Date;
  * but should be visible within the list function, thus it implements DataItem so we know we can
  * show it in our upcoming list
  */
-
 public class Announcement implements Comparable<Announcement>, Serializable {
 
 	public String name;
@@ -29,30 +28,25 @@ public class Announcement implements Comparable<Announcement>, Serializable {
 	}
 	
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return description;
 	}
 
 	
 	public Boolean getIsRead() {
-		// TODO Auto-generated method stub
 		return isRead;
 	}
 
 	
 	public Date getDueDate() {
-		// TODO Auto-generated method stub
 		return dueDate;
 	}
 	
 	
 	public Course getCourse() {
-		// TODO Auto-generated method stub
 		return course;
 	}
 
@@ -86,6 +80,7 @@ public class Announcement implements Comparable<Announcement>, Serializable {
         return dueDate.compareTo(announcement.dueDate);
     }
 
+    @Override
     public boolean equals(Object object) {
         return object instanceof Announcement && ((Announcement)object).getId().equals(this.getId());
     }

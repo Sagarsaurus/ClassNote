@@ -10,7 +10,6 @@ import java.util.List;
  * one for objects that inherit from GradedWork (tests and assignments)
  * and the other for Announcements from the professor
  */
-
 public class Course implements Serializable {
 
     private String title, siteId;
