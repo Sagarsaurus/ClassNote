@@ -2,8 +2,19 @@
 <resources>
 
     <string name="app_name">ClassNote</string>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="login">Login</string>
+
+    <string name="no_assignments">No Assignments</string>
+
+    <string name="course">Course</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="due_date">Due Date</string>
+    <string name="save_assignment">Save Assignment</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string-array name="help_items_announcements">

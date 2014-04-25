@@ -12,7 +12,7 @@
     <TextView android:id="@id/android:empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="No Assignments"
+        android:text="@string/no_assignments"
         android:gravity="center"
         android:textSize="18sp"/>
 </LinearLayout>
