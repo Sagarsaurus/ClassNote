@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class takes in a list of Announcements and uses it to populate a ListView
+ */
 public class AnnouncementAdapter extends BaseAdapter {
     private List<Announcement> list;
     private Activity activity;
@@ -26,6 +29,10 @@ public class AnnouncementAdapter extends BaseAdapter {
         dateFormat = new SimpleDateFormat("MMMM dd h:mm a");
     }
 
+    /**
+     * Sets the list to use for the ListView, sorting it in reverse order (by posted date).
+     * @param list
+     */
     public void setList(List<Announcement> list) {
         Collections.sort(list);
         Collections.reverse(list);
@@ -52,7 +59,7 @@ public class AnnouncementAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater vi;
             vi = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = vi.inflate(R.layout.list_item_assignment, null);
+            view = vi.inflate(R.layout.list_item_announcement, null);
         }
 
         Announcement announcement = (Announcement) getItem(i);

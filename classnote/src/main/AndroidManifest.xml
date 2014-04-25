@@ -24,12 +24,12 @@
 
         <activity
             android:name="com.hellabreakfast.classnote.ui.LoginActivity"
-            android:label="ClassNote" >
+            android:label="@string/app_name" >
         </activity>
 
         <activity
             android:name="com.hellabreakfast.classnote.ui.MainActivity"
-            android:label="ClassNote" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +39,6 @@
 
         <activity
             android:name="com.hellabreakfast.classnote.ui.UpdatePasswordActivity"
-            android:label="ClassNote"
             android:theme="@style/Theme.Transparent" >
         </activity>
 

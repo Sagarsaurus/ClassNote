@@ -14,6 +14,10 @@ import com.hellabreakfast.classnote.R;
 import com.hellabreakfast.classnote.model.TSquareAPI;
 import com.hellabreakfast.classnote.auth.GatechAccountAuthenticator;
 
+/**
+ * The activity that accepts the user's username and password and allows them to get to the
+ * main application if the login is correct.
+ */
 public class LoginActivity extends AccountAuthenticatorActivity {
 
 	@Override
@@ -22,7 +26,12 @@ public class LoginActivity extends AccountAuthenticatorActivity {
 		setContentView(R.layout.activity_login);
     }
 
-	public void login( View view ) {
+    /**
+     * This method is called when the login button is clicked. It attempts login, and either
+     * starts the MainActivity or displays an error based on the result.
+     * @param view
+     */
+	public void login(View view) {
         EditText usernameField = (EditText)findViewById(R.id.usernameField);
         EditText passwordField = (EditText)findViewById(R.id.passwordField);
         final String username = usernameField.getText().toString();
@@ -38,7 +47,7 @@ public class LoginActivity extends AccountAuthenticatorActivity {
                 final Account account = new Account(username, accountType);
                 accMgr.addAccountExplicitly(account, password, null);
 
-                // Now we tell our caller, could be the Andreoid Account Manager or even our own application
+                // Now we tell our caller, could be the Android Account Manager or even our own application
                 // that the process was successful
 
                 final Intent intent = new Intent();

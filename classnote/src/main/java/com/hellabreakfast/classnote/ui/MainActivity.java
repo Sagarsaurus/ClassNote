@@ -17,10 +17,10 @@ import com.hellabreakfast.classnote.model.TSquareAPI;
 import java.util.Date;
 
 
-//MainActivity is the new MainActivity.  It is effectively the back activity for all the fragments shown in the app and the drawer fragment
-
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+/**
+ * This activity holds all of the primary fragments and the navigation drawer.
+ */
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -47,6 +47,9 @@ public class MainActivity extends ActionBarActivity
         this.requireLogin();
     }
 
+    /**
+     * Checks to see if the user is logged in, and if not, start up the LoginActivity.
+     */
     private void requireLogin() {
         if (!Datamart.isLoggedIn()) {
             finish();
@@ -100,6 +103,9 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    /**
+     * Put the action bar back after selecting an item from the navigation drawer.
+     */
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -143,6 +149,9 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Loads up the help activity for the current screen
+     */
     public void showHelp() {
         Datamart.getInstance().setVisited(Datamart.getInstance().getCurrentScreen(), true);
         Intent intent = new Intent();

@@ -18,6 +18,9 @@ import com.hellabreakfast.classnote.R;
 import com.hellabreakfast.classnote.model.TSquareAPI;
 import com.hellabreakfast.classnote.auth.GatechAccountAuthenticator;
 
+/**
+ * This activity is used for the user to update their password, when it is changed on their GT account.
+ */
 public class UpdatePasswordActivity extends AccountAuthenticatorActivity {
     private EditText passwordField;
     private ProgressDialog progressDialog;
@@ -50,6 +53,10 @@ public class UpdatePasswordActivity extends AccountAuthenticatorActivity {
         dialog.show();
     }
 
+    /**
+     * Attempts to login with the entered password. On success, dismiss this activity. Otherwise,
+     * display an error and ask for the password again.
+     */
 	public void attemptLogin() {
         progressDialog = ProgressDialog.show(this, "Verifying Password", null, true, true, new DialogInterface.OnCancelListener() {
             @Override

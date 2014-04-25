@@ -9,7 +9,9 @@ import com.hellabreakfast.classnote.R;
 
 import java.text.SimpleDateFormat;
 
-
+/**
+ * Activity to display all details about an announcement
+ */
 public class AnnouncementDetailActivity extends ActionBarActivity {
 
     @Override

@@ -15,18 +15,13 @@ import com.hellabreakfast.classnote.R;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * The fragment for displaying current assignments (i.e. the ones with a due date in the future).
+ * This class is an observer of the Datamart and updates its content when the Datamart updates.
+ */
 public class CurrentAssignmentListFragment extends ListFragment implements Observer {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    public static final String ARG_SECTION_NUMBER = "section_number";
 
-    public CurrentAssignmentListFragment() {
-
-    }
-
-
+    @Override
     public void onResume() {
         super.onResume();
         AssignmentAdapter assignmentAdapter = (AssignmentAdapter)this.getListAdapter();
@@ -44,21 +39,24 @@ public class CurrentAssignmentListFragment extends ListFragment implements Obser
         return rootView;
     }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Datamart.getInstance().addObserver(this);
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Datamart.getInstance().deleteObserver(this);
     }
 
+    @Override
     public void update(Observable observable, Object data) {
         this.setListAdapter(new AssignmentAdapter(Datamart.getInstance().getUpcomingAssignments(), this.getActivity()));
     }
 
-
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         AssignmentAdapter adapter = (AssignmentAdapter)getListAdapter();
         Assignment a = (Assignment)adapter.getItem(position);

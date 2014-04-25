@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class takes in a list of Assignments and uses it to populate a ListView
+ */
 public class AssignmentAdapter extends BaseAdapter {
     private List<Assignment> list;
     private Activity activity;
@@ -26,6 +29,10 @@ public class AssignmentAdapter extends BaseAdapter {
         dateFormat = new SimpleDateFormat("MMMM d h:mm a");
     }
 
+    /**
+     * Sets the list to use for the ListView, sorting it in order (by due date).
+     * @param list
+     */
     public void setList(List<Assignment> list) {
         Collections.sort(list);
         //Collections.reverse(list);
