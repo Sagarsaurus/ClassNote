@@ -17,6 +17,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * The datamart is a singleton object that contains all data in our application. It is serializable
+ * so it can be saved to disk.
+ */
 public class Datamart extends Observable implements Serializable {
 
     static String SAVE_FILE_NAME = "datamart-classnote";
@@ -38,10 +42,16 @@ public class Datamart extends Observable implements Serializable {
         courseList = new ArrayList<Course>();
     }
 
+    /**
+     * @return whether a user is logged in
+     */
     public static boolean isLoggedIn() {
         return getInstance().getUsername() != null;
     }
 
+    /**
+     * @return the singleton instance of the Datamart
+     */
     public static Datamart getInstance() {
         if (instance == null) {
             instance = load();
@@ -52,11 +62,17 @@ public class Datamart extends Observable implements Serializable {
         return instance;
     }
 
+    /**
+     * deletes the instance from the disk. (used for logout)
+     */
     public static void clearInstance() {
         ClassNoteApp.getApplication().deleteFile(SAVE_FILE_NAME);
         instance = null;
     }
 
+    /**
+     * saves the instance to disk.
+     */
     public void save() {
         this.setChanged();
         this.notifyObservers();
@@ -80,6 +96,9 @@ public class Datamart extends Observable implements Serializable {
         }
     }
 
+    /**
+     * @return loads the model from disk and returns it
+     */
     public static Datamart load() {
         ObjectInputStream objectIn = null;
         Object object = null;
@@ -104,9 +123,7 @@ public class Datamart extends Observable implements Serializable {
                 }
             }
         }
-
         return (Datamart)object;
-
     }
 
     public void setUsername(String username) {
@@ -117,6 +134,9 @@ public class Datamart extends Observable implements Serializable {
         return username;
     }
 
+    /**
+     * @return the titles for the courses
+     */
     public List<String> getCourseTitles() {
         ArrayList<String> courseTitles = new ArrayList<String>();
         for (Course c : courseList) {
@@ -125,6 +145,10 @@ public class Datamart extends Observable implements Serializable {
         return courseTitles;
     }
 
+    /**
+     * @param title
+     * @return the course object with the specified title
+     */
     public Course getCourseByTitle(String title) {
         for (Course c : courseList) {
             if (c.getTitle().equals(title)) return c;
@@ -144,6 +168,10 @@ public class Datamart extends Observable implements Serializable {
         return list;
     }
 
+    /**
+     * Getter for the assignments through the course
+     * @return
+     */
     public List<Assignment> getAllAssignments() {
         List<Assignment> list = new LinkedList<Assignment>();
         for (Course c : getCourseList()) {
@@ -152,6 +180,10 @@ public class Datamart extends Observable implements Serializable {
         return list;
     }
 
+    /**
+     * Getter for upcoming assignments through the course
+     * @return
+     */
     public List<Assignment> getUpcomingAssignments() {
         List<Assignment> list = new LinkedList<Assignment>();
         for (Course c : getCourseList()) {
@@ -164,6 +196,10 @@ public class Datamart extends Observable implements Serializable {
         return list;
     }
 
+    /**
+     * Getter for past assignments through the course
+     * @return
+     */
     public List<Assignment> getPastAssignments() {
         List<Assignment> list = new LinkedList<Assignment>();
         for (Course c : getCourseList()) {
@@ -181,6 +217,10 @@ public class Datamart extends Observable implements Serializable {
         return courseList;
     }
 
+    /**
+     * adds the course to the datamart
+     * @param c The course to add
+     */
     public void addCourse(Course c) {
         for (Course course : courseList) {
             if (course.getSiteId().equals(c.getSiteId())) return;
