@@ -12,7 +12,7 @@ import android.os.Bundle;
 import com.hellabreakfast.classnote.ui.UpdatePasswordActivity;
 
 /**
- * Created by joshwilliams on 4/13/14.
+ * This class is necessary for the AccountManager integration
  */
 public class GatechAccountAuthenticator extends AbstractAccountAuthenticator {
 

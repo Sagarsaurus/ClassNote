@@ -22,8 +22,6 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-
-
         <activity
             android:name="com.hellabreakfast.classnote.ui.LoginActivity"
             android:label="ClassNote" >
@@ -53,6 +51,7 @@
         <activity
             android:name="com.hellabreakfast.classnote.ui.AnnouncementDetailActivity">
         </activity>
+
         <activity
             android:name="com.hellabreakfast.classnote.ui.AssignmentDetailActivity">
         </activity>

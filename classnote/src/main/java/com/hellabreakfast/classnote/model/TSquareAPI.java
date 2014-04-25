@@ -20,10 +20,21 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
+/**
+ * This class handles all of our interaction with the T-Square API thorugh static methods that login and refresh data.
+ */
 public class TSquareAPI {
+    // This cookie store holds the cookie that we get back when we login.
     public static BasicCookieStore cookieStore = new BasicCookieStore();
     public static final String BASE_URL = "https://t-square.gatech.edu/direct";
 
+    /**
+     * Send a POST request to /direct/session with the specified credentials. Call the appropriate method of the handler on completion.
+     *
+     * @param username
+     * @param password
+     * @param handler The handler to be called with a success or failure message
+     */
     public static void login(final String username, final String password, final AsyncResultHandler handler) {
         // Create a new HttpClient and Post Header
         AsyncHttpClient client = new AsyncHttpClient();
@@ -41,6 +52,9 @@ public class TSquareAPI {
         });
     }
 
+    /**
+     * Loops through the courses and refreshes the list of announcements for each course and inserts the new data into the Datamart
+     */
     public static void refreshAnnouncements() {
         for (Course c : Datamart.getInstance().getCourseList()) {
             AsyncHttpClient client = new AsyncHttpClient();
@@ -80,6 +94,9 @@ public class TSquareAPI {
         }
     }
 
+    /**
+     * Loops through the courses and refreshes the list of assignments for each course and inserts the new data into the Datamart
+     */
     public static void refreshAssignments() {
         for (Course c : Datamart.getInstance().getCourseList()) {
             AsyncHttpClient client = new AsyncHttpClient();
@@ -117,7 +134,9 @@ public class TSquareAPI {
     }
 
 
-    // refresh sites and then refresh assignments and announcements when finished
+    /**
+     * First refresh the list of courses from T-Square (making sure to only get courses for this semester), and then refresh the assignments and announcements.
+     */
     public static void refreshAll() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.setCookieStore(TSquareAPI.cookieStore);
@@ -167,6 +186,10 @@ public class TSquareAPI {
         });
     }
 
+    /**
+     * This method is called if our cookie expires. It retrieves the password from the AccountManager
+     * and logs in again to get a new cookie. Once it gets the cookie, it refreshes.
+     */
     public static void tryReauth() {
         try {
             AccountManager accountManager = AccountManager.get(ClassNoteApp.getApplication().getApplicationContext());
@@ -188,6 +211,9 @@ public class TSquareAPI {
         }
     }
 
+    /**
+     * Start the password update activity (because the user has changed their T-Square password)
+     */
     public static void requirePasswordUpdateToRefresh() {
         Intent intent = new Intent(ClassNoteApp.getApplication().getApplicationContext(), UpdatePasswordActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
